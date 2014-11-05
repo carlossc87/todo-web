@@ -40,7 +40,7 @@ public class WebInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(Config.class); // Cargamos la configuración
-        ctx.setDisplayName("ToDO"); // Nombre de la aplicación
+        ctx.setDisplayName("ToDo"); // Nombre de la aplicación
         ctx.setServletContext(servletContext); // Asignamos al conexto inicial
 
         DispatcherServlet dispatcherServlet = new DispatcherServlet(ctx);

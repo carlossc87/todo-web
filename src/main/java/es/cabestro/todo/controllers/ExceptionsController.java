@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -44,7 +45,7 @@ public class ExceptionsController {
      * @param request Petición que produce que se lance la excepción
      * @return Muestra una página de error
      */
-    @ExceptionHandler(value = {NoHandlerFoundException.class, NotFoundException.class })
+    @ExceptionHandler(value = {NoHandlerFoundException.class, NotFoundException.class, MissingServletRequestParameterException.class })
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ModelAndView handleNotFoundException(HttpServletRequest request) {
         log.warn("Page not found: " + request.getRequestURI());

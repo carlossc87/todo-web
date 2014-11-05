@@ -16,22 +16,37 @@
  */
 package es.cabestro.todo.controllers;
 
+import es.cabestro.todo.services.TodoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 @Controller
-@RequestMapping(value={"/","hello"})
-public class HelloWorldController { 
+@RequestMapping(value={"/","todo"})
+public class TodoController { 
     
-    @RequestMapping(value={"","hello"})
-    public String hello(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
+    private static final Logger log = LoggerFactory.getLogger(TodoController.class);
+    
+    @Autowired
+    private TodoService todoService;
+    
+    @RequestMapping(value={"","add"})
+    public String add(@RequestParam(value="text", required=true) String text, Model model) {
+        //model.addAttribute("texto", texto);
+        
+        log.debug("TodoController add");
+        
+        todoService.add(text);
+        
+        log.debug("TodoController add fin");
         
         
-        return "hello/helloworld";
+        return "todo/anadir";
     }
     
     
