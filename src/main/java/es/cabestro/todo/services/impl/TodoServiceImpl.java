@@ -16,13 +16,14 @@
  */
 package es.cabestro.todo.services.impl;
 
-import es.cabestro.todo.daos.TodoDao;
-import es.cabestro.todo.models.Todo;
+import es.cabestro.todo.repositories.TodoRepository;
+import es.cabestro.todo.entities.Todo;
 import es.cabestro.todo.services.TodoService;
 import java.util.List;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -34,9 +35,8 @@ public class TodoServiceImpl implements TodoService {
 
     private static final Logger log = LoggerFactory.getLogger(TodoServiceImpl.class);
     
-    //@Autowired
-    @Resource(name = "todoDao")
-    private TodoDao todoDao;
+    @Autowired
+    private TodoRepository todoRepository;
     
     @Override
     public void add(String text) {
@@ -46,9 +46,12 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = new Todo();
         todo.setId(1);
         todo.setText(text);
-        todoDao.create(todo);
+        todoRepository.save(todo);
         
-        List<Todo> todos = todoDao.findAll();
+        
+        
+        
+        List<Todo> todos = todoRepository.findAll();
         for(Todo t : todos){
             log.debug("ID: " + t.getId() + ", TEXT: " + t.getText());
         }

@@ -17,15 +17,13 @@
 package es.cabestro.todo.config;
 
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.SharedCacheMode;
-import javax.persistence.ValidationMode;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.jpa.AbstractEntityManagerFactoryBean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -38,6 +36,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+
 /**
  * Configuración de la aplicación.
  * 
@@ -46,6 +45,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @Configuration
 @ComponentScan("es.cabestro.todo")
 @EnableWebMvc
+@EnableJpaRepositories("es.cabestro.todo.repositories")
 @EnableTransactionManagement
 public class Config {
 
@@ -109,8 +109,8 @@ public class Config {
         bean.setJpaVendorAdapter(adapter);
         //bean.setValidationMode(ValidationMode.NONE);
         //bean.setSharedCacheMode(SharedCacheMode.NONE);
-        bean.getJpaPropertyMap().put("javax.persistence.schema-generation.database.action", "drop-and-create");
-        bean.setPackagesToScan("es.cabestro.todo.models");
+        //bean.getJpaPropertyMap().put("javax.persistence.schema-generation.database.action", "drop-and-create");
+        bean.setPackagesToScan("es.cabestro.todo.entities");
         bean.afterPropertiesSet();
         return bean.getObject();
     }

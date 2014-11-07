@@ -14,14 +14,38 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.cabestro.todo.daos;
+package es.cabestro.todo.entities;
 
-import es.cabestro.todo.models.Todo;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
-public interface TodoDao extends GenericDao<Todo, Integer> {
+@Entity
+public class Todo implements Serializable {
     
+    @Id
+    //@GeneratedValue
+    private Integer id;
+    
+    private String text;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }

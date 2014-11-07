@@ -14,40 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.cabestro.todo.models;
+package es.cabestro.todo.repositories;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.data.jpa.repository.JpaRepository;
+import es.cabestro.todo.entities.Todo;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
-@Entity
-public class Todo implements Serializable {
+@Repository
+public interface TodoRepository extends JpaRepository<Todo, Integer> {
     
-    @Id
-    //@GeneratedValue
-    private Integer id;
-    
-    private String text;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
     
 }
