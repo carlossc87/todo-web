@@ -20,9 +20,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -47,8 +50,14 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @EnableWebMvc
 @EnableJpaRepositories("es.cabestro.todo.repositories")
 @EnableTransactionManagement
+@PropertySource("classpath:config.properties")
 public class Config {
 
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+    
     /**
      * Configura el resolvedor de las vistas.
      * 
@@ -57,7 +66,7 @@ public class Config {
     @Bean(name = "viewResolver")
     public ViewResolver setupViewResolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setPrefix("/WEB-INF/classes/views/");
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
         return resolver;
@@ -66,15 +75,23 @@ public class Config {
     /**
      * Configura el datasource a la base de datos.
      * 
+     * @param driver La clase de driver para realizar la conexion.
+     * @param url La url para realizar la conexion
+     * @param username El nombre de usuario
+     * @param password La contraseña del usuario
      * @return Devuelve el datasource
      */
     @Bean(name = "dataSource")
-    public DataSource setupDataSource() {
+    public DataSource setupDataSource(
+            @Value("${database.todo.basic.driver}") String driver,
+            @Value("${database.todo.basic.url}") String url,
+            @Value("${database.todo.basic.username}") String username,
+            @Value("${database.todo.basic.password}") String password ) {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
-        dataSource.setUrl("jdbc:derby://localhost:1527/todo");
-        dataSource.setUsername("todo");
-        dataSource.setPassword("todo");
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         return dataSource;
     }
     
@@ -107,9 +124,6 @@ public class Config {
         bean.setPersistenceUnitName("todo");
         bean.setDataSource(dataSource);
         bean.setJpaVendorAdapter(adapter);
-        //bean.setValidationMode(ValidationMode.NONE);
-        //bean.setSharedCacheMode(SharedCacheMode.NONE);
-        //bean.getJpaPropertyMap().put("javax.persistence.schema-generation.database.action", "drop-and-create");
         bean.setPackagesToScan("es.cabestro.todo.entities");
         bean.afterPropertiesSet();
         return bean.getObject();

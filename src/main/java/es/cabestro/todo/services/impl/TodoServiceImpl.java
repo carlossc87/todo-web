@@ -20,7 +20,6 @@ import es.cabestro.todo.repositories.TodoRepository;
 import es.cabestro.todo.entities.Todo;
 import es.cabestro.todo.services.TodoService;
 import java.util.List;
-import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +51,9 @@ public class TodoServiceImpl implements TodoService {
         
         
         List<Todo> todos = todoRepository.findAll();
-        for(Todo t : todos){
+        todos.stream().forEach((t) -> {
             log.debug("ID: " + t.getId() + ", TEXT: " + t.getText());
-        }
+        });
         
         log.debug("TodoServiceImpl add fin");
     }

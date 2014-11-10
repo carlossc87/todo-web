@@ -23,7 +23,8 @@ import javax.transaction.Transactional;
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
 public interface TodoService {
-    
+
     @Transactional
-    void add(String text);
+    public void add(String text);
+    
 }

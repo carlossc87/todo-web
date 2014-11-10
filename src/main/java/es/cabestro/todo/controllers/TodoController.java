@@ -46,7 +46,7 @@ public class TodoController {
         log.debug("TodoController add fin");
         
         
-        return "todo/anadir";
+        return "todo/add";
     }
     
     

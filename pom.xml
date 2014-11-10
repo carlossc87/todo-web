@@ -7,11 +7,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>ToDo Web</name>
-    <description>ToDo Web @ Cabestro (Spring Web MVC, Spring Security, JPA2)</description>
+    <name>ToDo</name>
+    <description>ToDo Web @ Cabestro</description>
+    <url>http://cabestro.es/todo</url>
 
     <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- Versiones de dependencias -->
@@ -59,6 +59,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${slf4j.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <!-- Fin slf4j -->
         <!-- Log4j -->
@@ -66,11 +67,13 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <!-- Fin Log4j -->
         <!-- JPA2 (Hibernate) -->
@@ -86,17 +89,6 @@
         </dependency>
         <!-- Fin JPA2 (Hibernate) -->
         <!-- Java EE -->
-        <!--dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.5.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>2.5.2</version>
-            <scope>provided</scope>
-        </dependency-->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -107,6 +99,7 @@
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
             <version>10.11.1.1</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
     
@@ -119,9 +112,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
@@ -133,31 +123,38 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>${javaee.version}</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>development-profile</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources-dev</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>release-profile</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources-pro</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
 </project>

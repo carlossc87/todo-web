@@ -17,9 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <Configuration status="error">
     <Properties>
-        <Property name="filename">D:\todo</Property>
+        <Property name="app">todo</Property>
         <Property name="classpath">es.cabestro.todo</Property>
-        <Property name="app">ToDo</Property>
+        <Property name="filename">D:\${app}</Property>
     </Properties>
     <Appenders>
         <Console name="Console">

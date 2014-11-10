@@ -51,7 +51,7 @@ public class ExceptionsController {
         log.warn("Page not found: " + request.getRequestURI());
         HashMap<String, Object> model = new HashMap<>();
         model.put("page", request.getRequestURI());
-        return new ModelAndView("exceptions/404", model);
+        return new ModelAndView("exceptions/notfound", model);
     }
 
     /**
@@ -67,6 +67,6 @@ public class ExceptionsController {
         log.error(exception.getLocalizedMessage(), exception);
         HashMap<String, Object> model = new HashMap<>();
         model.put("page", request.getRequestURI());
-        return new ModelAndView("exceptions/505", model);
+        return new ModelAndView("exceptions/error", model);
     }
 }
