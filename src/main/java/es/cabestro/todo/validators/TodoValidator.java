@@ -14,40 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.cabestro.todo.entities;
+package es.cabestro.todo.validators;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Min;
+import es.cabestro.todo.entities.Todo;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
 
 /**
  *
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
-@Entity
-public class Todo implements Serializable {
-    
-    @Id
-    @GeneratedValue
-    private Integer id;
-    
-    private String title;
+public class TodoValidator implements Validator {
 
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean supports(Class<?> type) {
+        return Todo.class.equals(type);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public void validate(Object o, Errors errors) {
+        Todo todo = (Todo) o;
+        
+        ValidationUtils.rejectIfEmpty(errors, "title", "todo.title.error.null");
+        
+        if (todo.getTitle().length() < 10){
+            errors.rejectValue("title", "todo.title.error.min10");
+        }
     }
 }

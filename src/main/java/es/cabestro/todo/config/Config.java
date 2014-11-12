@@ -16,6 +16,7 @@
  */
 package es.cabestro.todo.config;
 
+import java.util.Locale;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -26,16 +27,19 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -56,6 +60,23 @@ public class Config {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+    
+    
+    /*@Bean(name = "localeResolver")
+    public static SessionLocaleResolver setupSessionLocaleResolver(){
+        SessionLocaleResolver resolver = new SessionLocaleResolver();
+        //resolver.setDefaultLocale(Locale.ENGLISH);
+        return resolver;
+    }*/
+    
+    @Bean(name = "messageSource")
+    public static ResourceBundleMessageSource setupReloadableResourceBundleMessageSource(){
+        ResourceBundleMessageSource messageSource =  new ResourceBundleMessageSource();
+        //messageSource.setBasename("messages");
+        messageSource.setBasenames("messages");
+        //messageSource.setBasenames("views","validators");
+        return messageSource;
     }
     
     /**

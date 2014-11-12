@@ -16,15 +16,19 @@
  */
 package es.cabestro.todo.controllers;
 
+import es.cabestro.todo.entities.Todo;
 import es.cabestro.todo.services.TodoService;
+import es.cabestro.todo.validators.TodoValidator;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value={"/","todo"})
@@ -32,23 +36,53 @@ public class TodoController {
     
     private static final Logger log = LoggerFactory.getLogger(TodoController.class);
     
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(new TodoValidator());
+    }
+    
     @Autowired
     private TodoService todoService;
     
-    @RequestMapping(value={"","add"})
-    public String add(@RequestParam(value="text", required=true) String text, Model model) {
-        //model.addAttribute("texto", texto);
-        
-        log.debug("TodoController add");
-        
-        todoService.add(text);
-        
-        log.debug("TodoController add fin");
-        
-        
-        return "todo/add";
+    @RequestMapping(value={"","list"})
+    public String list(Model model){
+        model.addAttribute("todos", todoService.list());
+        return "todo/list";
     }
     
+    @RequestMapping("new")
+    public String _new(Model model) {
+        model.addAttribute("todo", new Todo());
+        return "todo/new";
+    }
     
-
+    @RequestMapping("add") 
+    public String add(@Valid Todo todo, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return "todo/new";
+        }
+        todoService.add(todo);
+        return "redirect:/todo/list";
+    }
+    
+    @RequestMapping("edit")
+    public String edit(Integer id, Model model) {
+        model.addAttribute("todo", todoService.find(id));
+        return "todo/edit";
+    }
+    
+    @RequestMapping("save")
+    public String save(@Valid Todo todo, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return "todo/edit";
+        }
+        todoService.save(todo);
+        return "redirect:/todo/list";
+    }
+    
+    @RequestMapping("delete")
+    public String delete(Integer id, Model model) {
+        todoService.delete(id);
+        return "redirect:/todo/list";
+    }
 }

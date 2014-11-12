@@ -64,6 +64,8 @@ public class ExceptionsController {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView handleError(HttpServletRequest request, Exception exception) {
+        log.debug("Excepcion: " + exception.getLocalizedMessage());
+        log.debug("Excepcion: " + exception.getClass().getName());
         log.error(exception.getLocalizedMessage(), exception);
         HashMap<String, Object> model = new HashMap<>();
         model.put("page", request.getRequestURI());

@@ -16,6 +16,8 @@
  */
 package es.cabestro.todo.services;
 
+import es.cabestro.todo.entities.Todo;
+import java.util.List;
 import javax.transaction.Transactional;
 
 /**
@@ -24,7 +26,16 @@ import javax.transaction.Transactional;
  */
 public interface TodoService {
 
-    @Transactional
-    public void add(String text);
+    public List<Todo> list();
     
+    public Todo find(Integer id);
+    
+    @Transactional
+    public void add(Todo todo);
+    
+    @Transactional
+    public void save(Todo todo);
+    
+    @Transactional
+    public void delete(Integer id);
 }

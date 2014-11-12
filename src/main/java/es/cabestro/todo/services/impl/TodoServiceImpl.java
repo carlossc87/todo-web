@@ -38,24 +38,27 @@ public class TodoServiceImpl implements TodoService {
     private TodoRepository todoRepository;
     
     @Override
-    public void add(String text) {
-        
-        log.debug("TodoServiceImpl add");
-        
-        Todo todo = new Todo();
-        todo.setId(1);
-        todo.setText(text);
-        todoRepository.save(todo);
-        
-        
-        
-        
-        List<Todo> todos = todoRepository.findAll();
-        todos.stream().forEach((t) -> {
-            log.debug("ID: " + t.getId() + ", TEXT: " + t.getText());
-        });
-        
-        log.debug("TodoServiceImpl add fin");
+    public List<Todo> list(){
+        return todoRepository.findAll();
     }
     
+    @Override
+    public Todo find(Integer id){
+        return todoRepository.findOne(id);
+    }
+            
+    @Override
+    public void add(Todo todo) {
+        todoRepository.save(todo);
+    }
+ 
+    @Override
+    public void save(Todo todo){
+        todoRepository.save(todo);
+    }
+    
+    @Override
+    public void delete(Integer id){
+        todoRepository.delete(id);
+    }
 }
