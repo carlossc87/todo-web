@@ -36,10 +36,10 @@ public class TodoValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Todo todo = (Todo) o;
         
-        ValidationUtils.rejectIfEmpty(errors, "title", "todo.title.error.null");
+        ValidationUtils.rejectIfEmpty(errors, "title", "validators.todo.title.requerido");
         
         if (todo.getTitle().length() < 10){
-            errors.rejectValue("title", "todo.title.error.min10");
+            errors.rejectValue("title", "validators.todo.title.min10");
         }
     }
 }
