@@ -16,11 +16,7 @@
  */
 package es.cabestro.todo.config;
 
-import es.cabestro.todo.exceptions.NotFoundException;
 import javax.annotation.Resource;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +25,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -43,8 +41,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:database-todo.properties")
-public class TodoDatabaseConfig {
+@EnableJpaRepositories("es.cabestro.todo.repositories")
+@PropertySource("classpath:database.properties")
+public class DatabaseConfig {
     
     /**
      * Genera el configurador para el acceso a los archivos de propiedades.
@@ -64,15 +63,10 @@ public class TodoDatabaseConfig {
      */
     @Bean(name = "dataSource")
     public DataSource setupDataSource(
-            @Value("${database.todo}") String nameJndi) {        
-        try {
-            Context initContext = new InitialContext();
-            Context envContext  = (Context) initContext.lookup("java:/comp/env");
-            DataSource dataSource = (DataSource) envContext.lookup(nameJndi);
-            return dataSource;
-        } catch (NamingException ex) {
-            throw new NotFoundException("Datasource " + nameJndi + " not found.", ex);
-        }
+            @Value("${database.jndi}") String nameJndi) {   
+        final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
+        dsLookup.setResourceRef(true);
+        return dsLookup.getDataSource(nameJndi);
     }
     
     /**

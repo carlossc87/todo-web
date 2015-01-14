@@ -16,26 +16,46 @@
  */
 package es.cabestro.todo.services;
 
-import es.cabestro.todo.entities.Todo;
+import es.cabestro.todo.entities.Task;
 import java.util.List;
 import javax.transaction.Transactional;
 
 /**
- *
+ * El servicio para la entidad task.
+ * 
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
-public interface TodoService {
+public interface TasksService {
 
-    public List<Todo> list();
+    /**
+     * Obtiene todas las tareas.
+     * 
+     * @return Devuelve la lista de las tareas
+     */
+    public List<Task> list();
     
-    public Todo find(Integer id);
+    /**
+     * Busca una tarea a partir del identificador.
+     * 
+     * @param id El identificador de la tarea
+     * @return Devuelve la tarea
+     */
+    public Task find(Integer id);
     
+    /**
+     * Se modifica una tarea existente.
+     * 
+     * @param task La tarea con la modificaciones. El identificador debe 
+     * coincidir con uno existente
+     */
     @Transactional
-    public void add(Todo todo);
+    public void save(Task task);
     
-    @Transactional
-    public void save(Todo todo);
-    
+    /**
+     * Se elimina una tarea existente.
+     * 
+     * @param id El identificador de la tarea a eliminar
+     */
     @Transactional
     public void delete(Integer id);
 }

@@ -19,7 +19,6 @@ package es.cabestro.todo.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Configuración de la aplicación.
@@ -28,8 +27,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 @Configuration
 @ComponentScan("es.cabestro.todo")
-@EnableJpaRepositories("es.cabestro.todo.repositories")
-@Import({WebMvcConfig.class, LocaleConfig.class, TodoDatabaseConfig.class})
+@Import({WebMvcConfig.class, LocaleConfig.class, DatabaseConfig.class})
 public class Config {
 
 }

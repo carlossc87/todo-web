@@ -14,32 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.cabestro.todo.validators;
+package es.cabestro.todo.repositories;
 
-import es.cabestro.todo.entities.Todo;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
+import org.springframework.data.jpa.repository.JpaRepository;
+import es.cabestro.todo.entities.Task;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
-public class TodoValidator implements Validator {
-
-    @Override
-    public boolean supports(Class<?> type) {
-        return Todo.class.equals(type);
-    }
-
-    @Override
-    public void validate(Object o, Errors errors) {
-        Todo todo = (Todo) o;
-        
-        ValidationUtils.rejectIfEmpty(errors, "title", "validators.todo.title.requerido");
-        
-        if (todo.getTitle().length() < 10){
-            errors.rejectValue("title", "validators.todo.title.min10");
-        }
-    }
+@Repository
+public interface TasksRepository extends JpaRepository<Task, Integer> {
+    
 }

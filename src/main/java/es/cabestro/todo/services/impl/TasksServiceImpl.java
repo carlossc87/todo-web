@@ -16,9 +16,9 @@
  */
 package es.cabestro.todo.services.impl;
 
-import es.cabestro.todo.repositories.TodoRepository;
-import es.cabestro.todo.entities.Todo;
-import es.cabestro.todo.services.TodoService;
+import es.cabestro.todo.repositories.TasksRepository;
+import es.cabestro.todo.entities.Task;
+import es.cabestro.todo.services.TasksService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,36 +29,35 @@ import org.springframework.stereotype.Service;
  *
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
-@Service("todoService")
-public class TodoServiceImpl implements TodoService {
+@Service("tasksService")
+public class TasksServiceImpl implements TasksService {
 
-    private static final Logger log = LoggerFactory.getLogger(TodoServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TasksServiceImpl.class);
     
     @Autowired
-    private TodoRepository todoRepository;
+    private TasksRepository tasksRepository;
     
     @Override
-    public List<Todo> list(){
-        return todoRepository.findAll();
+    public List<Task> list(){
+        LOG.debug("Busca todas las tareas.");
+        return tasksRepository.findAll();
     }
     
     @Override
-    public Todo find(Integer id){
-        return todoRepository.findOne(id);
-    }
-            
-    @Override
-    public void add(Todo todo) {
-        todoRepository.save(todo);
+    public Task find(Integer id){
+        LOG.debug("Busca una tarea en concreto por el id.");
+        return tasksRepository.findOne(id);
     }
  
     @Override
-    public void save(Todo todo){
-        todoRepository.save(todo);
+    public void save(Task todo){
+        LOG.debug("Guarda una nueva tarea o una existente.");
+        tasksRepository.save(todo);
     }
     
     @Override
     public void delete(Integer id){
-        todoRepository.delete(id);
+        LOG.debug("Elimina una tarea.");
+        tasksRepository.delete(id);
     }
 }

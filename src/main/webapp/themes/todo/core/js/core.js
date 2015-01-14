@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (C) 2014 Carlos Serramito Calvo <carlos@cabestro.es>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,40 +14,5 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package es.cabestro.todo.entities;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Min;
 
-/**
- *
- * @author Carlos Serramito Calvo <carlos@cabestro.es>
- */
-@Entity
-public class Todo implements Serializable {
-    
-    @Id
-    @GeneratedValue
-    private Integer id;
-    
-    private String title;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-}

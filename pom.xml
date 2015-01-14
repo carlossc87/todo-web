@@ -24,6 +24,8 @@
         <jstl.version>1.2</jstl.version>
         <tiles.version>3.0.5</tiles.version>
         <bootstrap.version>3.3.1</bootstrap.version>
+        <html5shiv.version>3.7.2</html5shiv.version>
+        <respond.version>1.4.2</respond.version>
         <!-- Fin versiones de dependencias -->
     </properties>
     
@@ -115,6 +117,16 @@
             <artifactId>bootstrap</artifactId>
             <version>${bootstrap.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>html5shiv</artifactId>
+            <version>${html5shiv.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>respond</artifactId>
+            <version>${respond.version}</version>
+        </dependency>
     </dependencies>
     
     <build>
@@ -137,6 +149,15 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
+            
+            <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>2.1</version>
+      </plugin>
+      
+      
         </plugins>
     </build>
     

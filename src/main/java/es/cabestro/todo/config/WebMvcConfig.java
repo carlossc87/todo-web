@@ -16,63 +16,75 @@
  */
 package es.cabestro.todo.config;
 
+import javax.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 /**
+ * Configuración del MVC de Spring.
  *
  * @author Carlos Serramito Calvo <carlos@cabestro.es>
  */
 @Configuration
 @EnableWebMvc
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
+
+    @Resource(name = "localeChangeInterceptor")
+    HandlerInterceptor localeChangeInterceptor;
+
+    /**
+     * Directorio del tema de la web
+     */
+    private static final String DIR_THEME = "/themes/todo";
     
     /**
-     * 
-     * 
-     * @param registry 
+     * Añade los interceptores.
+     *
+     * @param registry El registrador.
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor);
+    }
+
+    /**
+     * Añade enlaces a los directorios del tema.
+     *
+     * @param registry El registrador.
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**").addResourceLocations("/commons/css/");
-        registry.addResourceHandler("/img/**").addResourceLocations("/commons/img/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/commons/js/");
-        registry.addResourceHandler("/theme/css/**").addResourceLocations("/themes/todo/commons/css/");
-        registry.addResourceHandler("/theme/img/**").addResourceLocations("/themes/todo/commons/img/");
-        registry.addResourceHandler("/theme/js/**").addResourceLocations("/themes/todo/commons/js/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/"); //www.webjars.org
+        registry.addResourceHandler("/theme/**").addResourceLocations(DIR_THEME + "/core/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
-    
+
     /**
      * Configura el resolvedor de las vistas.
-     * 
+     *
      * @return Devuelve el resolvedor
      */
     @Bean(name = "viewResolver")
     public ViewResolver setupViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/themes/todo/");
-        resolver.setSuffix(".jsp");
-        resolver.setViewClass(JstlView.class);
-        return resolver;
+        return new TilesViewResolver();
     }
 
     /**
      * Configura los tiles.
-     * 
+     *
      * @return Devuelve el configurador
      */
     @Bean(name = "tilesConfigurer")
     public TilesConfigurer setupTilesConfigurer() {
         TilesConfigurer configurer = new TilesConfigurer();
-        configurer.setDefinitions("/themes/todo/tiles-definitions.xml");
+        configurer.setDefinitions(DIR_THEME + "/tiles.xml");
         return configurer;
     }
 }

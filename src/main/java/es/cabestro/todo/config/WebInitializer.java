@@ -39,14 +39,14 @@ public class WebInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(Config.class); // Cargamos la configuración
-        ctx.setDisplayName("ToDo"); // Nombre de la aplicación
-        ctx.setServletContext(servletContext); // Asignamos al conexto inicial
+        ctx.register(Config.class); 
+        ctx.setServletContext(servletContext); 
 
         DispatcherServlet dispatcherServlet = new DispatcherServlet(ctx);
-        dispatcherServlet.setThrowExceptionIfNoHandlerFound(true); // Capturar las excepciones 404
+        // Capturar las excepciones 404
+        dispatcherServlet.setThrowExceptionIfNoHandlerFound(true); 
         Dynamic servlet = servletContext.addServlet("dispatcher", dispatcherServlet);
-        servlet.addMapping("/"); // Mapeamos los controladores que comienzan con /
-        servlet.setLoadOnStartup(1); // Cargamos el servlet al iniciar
+        servlet.addMapping("/"); 
+        servlet.setLoadOnStartup(1); 
     }
 }

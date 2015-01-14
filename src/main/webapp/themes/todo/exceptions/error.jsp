@@ -1,17 +1,21 @@
-<%-- 
-    Document   : 505
-    Created on : 22-sep-2014, 23:37:34
-    Author     : Carlos Serramito Calvo <carlossc87@gmail.es>
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Error 505</title>
-    </head>
-    <body>
-        <h1>Error 505</h1>
-    </body>
-</html>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<div role="main" class="container theme-showcase">
+    <div class="page-header">
+        <h1><spring:message code="views.exceptions.error.title" /></h1>
+    </div>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+          <h2 class="panel-title"><spring:message code="views.exceptions.error.title" /></h2>
+      </div>
+      <div class="panel-body">
+          <p><spring:message code="views.exceptions.error.message" /></p>
+          <ul>
+              <li><strong><spring:message code="views.exceptions.error.info.id" />:</strong> ${error}</li>
+          </ul>
+      </div>
+    </div>
+</div>

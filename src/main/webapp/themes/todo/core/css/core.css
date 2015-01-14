@@ -18,7 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Created on : 18-nov-2014, 21:49:58
     Author     : Carlos Serramito Calvo <carlos@cabestro.es>
 */
-body{
-    padding-top: 70px;
-    padding-bottom: 30px;
+
+/* Separa el icono del texto en los botones */
+.btn .glyphicon {
+    margin-right: 8px;
+}
+
+/* Centra las tareas con los botones */
+.task-center {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

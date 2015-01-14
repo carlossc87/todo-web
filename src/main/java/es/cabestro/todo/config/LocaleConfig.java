@@ -21,6 +21,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 /**
@@ -29,6 +31,18 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
  */
 @Configuration
 public class LocaleConfig {
+    
+    /**
+     * Configura un interceptor para capturar el idioma de la página.
+     * 
+     * @return  Devuelve el interceptor para el idioma
+     */
+    @Bean(name = "localeChangeInterceptor")
+    public static HandlerInterceptor setupLocaleChangeInterceptor(){
+        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+        interceptor.setParamName("lang");
+        return interceptor;
+    }
     
     /**
      * Configura el resolvedor de los locale.
@@ -51,7 +65,7 @@ public class LocaleConfig {
     @Bean(name = "messageSource")
     public static AbstractMessageSource setupReloadableResourceBundleMessageSource(){
         ResourceBundleMessageSource messageSource =  new ResourceBundleMessageSource();
-        messageSource.setBasenames("locales/messages");
+        messageSource.setBasenames("es/cabestro/todo/locales/messages");
         return messageSource;
     }
 }

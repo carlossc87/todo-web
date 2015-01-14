@@ -27,10 +27,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {
     
+    /**
+     * Constructor para especificar que no se encontró un recurso.
+     * 
+     * @param message El mensaje del recurso no encontrado
+     */
     public NotFoundException(String message) {
         super(message);
     }
 
+    /**
+     * Constructor para especificar que no se encontró un recurso que procede
+     * de una excepción.
+     * 
+     * @param message El mensaje del recurso no encontrado.
+     * @param cause La excepción causante de esta excepción.
+     */
     public NotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
