@@ -149,15 +149,6 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            
-            
-            <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>sonar-maven-plugin</artifactId>
-        <version>2.1</version>
-      </plugin>
-      
-      
         </plugins>
     </build>
     
@@ -171,6 +162,13 @@
                     </resource>
                     <resource>
                         <directory>src/main/resources-dev</directory>
+                        <excludes>
+                            <exclude>META-INF/**/*.*</exclude>
+                        </excludes>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources-dev/META-INF</directory>
+                        <targetPath>${basedir}/target/${project.artifactId}-${project.version}/META-INF</targetPath>
                     </resource>
                 </resources>
             </build>
