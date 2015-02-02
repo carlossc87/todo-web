@@ -88,6 +88,23 @@ public class TasksController {
     }
     
     /**
+     * Guarda una tarea nueva.
+     * 
+     * @param task La tarea con los cambios
+     * @param result El resultado del validador
+     * @return Se redirige a la lista de tareas
+     */
+    @RequestMapping("saveadd")
+    public String saveadd(@Valid Task task, BindingResult result) {
+        LOG.debug("Guardar los cambios de una tarea nueva o existente.");
+        if(result.hasErrors()) {
+            return TASKS_ADD;
+        }
+        tasksService.save(task);
+        return REDIRECT + TASKS_INDEX;
+    }
+    
+    /**
      * Muestra un formulario para editar una tarea.
      * 
      * @param id El identificador de la tarea
@@ -108,8 +125,8 @@ public class TasksController {
      * @param result El resultado del validador
      * @return Se redirige a la lista de tareas
      */
-    @RequestMapping("save")
-    public String save(@Valid Task task, BindingResult result) {
+    @RequestMapping("saveedit")
+    public String saveedit(@Valid Task task, BindingResult result) {
         LOG.debug("Guardar los cambios de una tarea nueva o existente.");
         if(result.hasErrors()) {
             return TASKS_EDIT;

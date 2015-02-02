@@ -15,4 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
+/*
+ * /tasks/index
+ * Pasa al dialogo la url para eliminar la tarea.
+ */
+$('#confirmTaskDeleteModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var urlconfirm = button.data('urlconfirm');
+    var modal = $(this);
+    modal.find('#taskDeleteModal').attr("href", urlconfirm);
+});

@@ -19,12 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
     "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="*/*" template="/themes/todo/layout.jsp">
+    <definition name="*/*" template="/WEB-INF/classes/es/cabestro/todo/views/core/layout.jsp">
         <put-attribute name="title" value="views.{1}.{2}.title" />
         <put-attribute name="controller" value="{1}" />
         <put-attribute name="action" value="{2}" />
-        <put-attribute name="header" value="/themes/todo/header.jsp" />
-        <put-attribute name="footer" value="/themes/todo/footer.jsp" />
-        <put-attribute name="main" value="/themes/todo/{1}/{2}.jsp" />
+        <put-attribute name="header" value="/WEB-INF/classes/es/cabestro/todo/views/core/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/classes/es/cabestro/todo/views/core/footer.jsp" />
+        <put-attribute name="main" value="/WEB-INF/classes/es/cabestro/todo/views/{1}/{2}.jsp" />
     </definition>
 </tiles-definitions>

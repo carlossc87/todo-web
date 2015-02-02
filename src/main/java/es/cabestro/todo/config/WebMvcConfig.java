@@ -41,9 +41,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     HandlerInterceptor localeChangeInterceptor;
 
     /**
-     * Directorio del tema de la web
+     * Directorio de las vistas
      */
-    private static final String DIR_THEME = "/themes/todo";
+    private static final String DIR_VIEWS = "/WEB-INF/classes/es/cabestro/todo/views";
     
     /**
      * Añade los interceptores.
@@ -62,7 +62,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/theme/**").addResourceLocations(DIR_THEME + "/core/");
+        registry.addResourceHandler("/theme/**").addResourceLocations(DIR_VIEWS + "/core/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
@@ -84,7 +84,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean(name = "tilesConfigurer")
     public TilesConfigurer setupTilesConfigurer() {
         TilesConfigurer configurer = new TilesConfigurer();
-        configurer.setDefinitions(DIR_THEME + "/tiles.xml");
+        configurer.setDefinitions(DIR_VIEWS + "/core/tiles.xml");
         return configurer;
     }
 }

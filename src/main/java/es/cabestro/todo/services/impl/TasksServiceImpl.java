@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.HtmlUtils;
 
 /**
  *
@@ -52,6 +53,13 @@ public class TasksServiceImpl implements TasksService {
     @Override
     public void save(Task todo){
         LOG.debug("Guarda una nueva tarea o una existente.");
+        
+        // Eliminamos los espacios al comienzo y al final.
+        todo.setTitle(todo.getTitle().trim());
+        
+        // Eliminamos los caracteres especiales de html.
+        todo.setTitle(HtmlUtils.htmlEscapeDecimal(todo.getTitle()));
+        
         tasksRepository.save(todo);
     }
     

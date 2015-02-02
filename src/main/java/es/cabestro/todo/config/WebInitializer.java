@@ -16,11 +16,13 @@
  */
 package es.cabestro.todo.config;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration.Dynamic;
+import javax.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
@@ -38,15 +40,29 @@ public class WebInitializer implements WebApplicationInitializer {
      */
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
+        // Clase con la configuración de la aplicación
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(Config.class); 
         ctx.setServletContext(servletContext); 
 
+        servletContext.setInitParameter("defaultHtmlEscape", "false");
+        
+        // Filtro para la codificación
+        FilterRegistration.Dynamic fr = servletContext.addFilter(
+                "encodingFilter", new CharacterEncodingFilter());
+        fr.setInitParameter("encoding", "UTF-8");
+        fr.setInitParameter("forceEncoding", "true");
+        fr.addMappingForUrlPatterns(null, true, "/*");
+        
+        // Servlet inicial de Spring
         DispatcherServlet dispatcherServlet = new DispatcherServlet(ctx);
         // Capturar las excepciones 404
         dispatcherServlet.setThrowExceptionIfNoHandlerFound(true); 
-        Dynamic servlet = servletContext.addServlet("dispatcher", dispatcherServlet);
+        ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", dispatcherServlet);
         servlet.addMapping("/"); 
         servlet.setLoadOnStartup(1); 
+        
+        
+        
     }
 }

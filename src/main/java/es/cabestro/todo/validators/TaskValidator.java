@@ -54,14 +54,16 @@ public class TaskValidator implements Validator {
     public void validate(Object o, Errors errors) {
         LOG.debug("Validar una tarea.");
         Task todo = (Task) o;
+        boolean hasTitle = true;
         
         LOG.debug("Comprobando si se pasa un título.");
-        if( todo.getTitle() == null ){
+        if( todo.getTitle() == null || todo.getTitle().trim().isEmpty() ){
             errors.rejectValue("title", "validators.task.title.requerido");
+            hasTitle = false;
         }
         
         LOG.debug("Comprobando si el título es mayor de del limite.");
-        if ( todo.getTitle() != null && todo.getTitle().length() < MAX_SIZE_TITLE){
+        if ( hasTitle && todo.getTitle().length() < MAX_SIZE_TITLE){
             errors.rejectValue("title", "validators.task.title.min10");
         }
     }
