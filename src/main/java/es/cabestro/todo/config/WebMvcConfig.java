@@ -62,7 +62,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/theme/**").addResourceLocations(DIR_VIEWS + "/core/");
+        registry.addResourceHandler("/core/**").addResourceLocations(DIR_VIEWS + "/core/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 

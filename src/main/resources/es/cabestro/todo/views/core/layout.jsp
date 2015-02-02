@@ -10,7 +10,7 @@
 <c:url var="urlBootstrapJs" value="/webjars/bootstrap/3.3.1/js/bootstrap.min.js" />
 <c:url var="urlHtml5shivJs" value="/webjars/html5shiv/3.7.2/html5shiv.min.js" />
 <c:url var="urlRespondJs" value="/webjars/respond/1.4.2/dest/respond.min.js" />
-<c:url var="urlTheme" value="/theme" scope="request" />
+<c:url var="urlCoreView" value="/core" scope="request" />
 
 <c:set var="controller" scope="request"><tiles:getAsString name="controller" defaultValue="" /></c:set>
 <c:set var="action" scope="request"><tiles:getAsString name="action" defaultValue="" /></c:set>
@@ -29,7 +29,7 @@
         <title>${title}</title>
         <link rel="stylesheet" href="${urlBootstrapCss}" />
         <link rel="stylesheet" href="${urlBootstrapThemeCss}" />
-        <link rel="stylesheet" href="${urlTheme}/css/core.css" />
+        <link rel="stylesheet" href="${urlCoreView}/css/core.css" />
     </head>
     <body role="document">
         <tiles:insertAttribute name="header" />
@@ -41,6 +41,6 @@
             <script src="${urlHtml5shivJs}"></script>
             <script src="${urlRespondJs}"></script>
         <![endif]-->
-        <script src="${urlTheme}/js/core.js"></script>
+        <script src="${urlCoreView}/js/core.js"></script>
     </body>
 </html>
