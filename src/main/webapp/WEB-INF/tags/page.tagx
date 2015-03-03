@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Copyright (C) 2015 Carlos Serramito Calvo <carlos@cabestro.es>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:page="urn:jsptagdir:/WEB-INF/tags/page"
+          xmlns:spring="http://www.springframework.org/tags">
+
+    <jsp:directive.tag pageEncoding="UTF-8" 
+                       description="Página por defecto."/> 
+
+    <jsp:directive.attribute name="title" 
+                             required="true" 
+                             description="El código del mensaje para el título de la página."/>
+    <jsp:directive.attribute name="menu" 
+                             description="El identificador del menú que está activo."/>
+
+    <jsp:output doctype-root-element="HTML" doctype-system="" />
+    <html lang="${pageContext.response.locale.language}">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title><spring:message code="${title}"/></title>
+            <page:style name="bootstrap.min.css" webjars="true"/>
+            <page:style name="bootstrap-theme.min.css" webjars="true"/>
+            <page:style name="style.min.css"/>
+        </head>
+        <body role="document">
+            <page:header>
+                <jsp:attribute name="menus">
+                    <page:menu id="tasks" 
+                               link="/tasks/index" 
+                               title="views.tasks.index.title" 
+                               active="${menu}"/>
+                </jsp:attribute>
+                <jsp:attribute name="langs">
+                    <page:lang lang="es_ES"/>
+                    <page:lang lang="gl_ES"/>
+                </jsp:attribute>
+            </page:header>
+            <jsp:doBody />
+            <page:script name="jquery.min.js" webjars="true"/>
+            <page:script name="bootstrap.min.js" webjars="true"/>
+            <page:script name="html5shiv.min.js" webjars="true" condition="lt IE 9"/>
+            <page:script name="respond.min.js" webjars="true" condition="lt IE 9"/>
+            <page:script name="script.min.js"/>
+        </body>
+    </html>
+</jsp:root>

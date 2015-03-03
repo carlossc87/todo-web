@@ -25,8 +25,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
  * Configuración del MVC de Spring.
@@ -39,11 +40,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Resource(name = "localeChangeInterceptor")
     HandlerInterceptor localeChangeInterceptor;
-
-    /**
-     * Directorio de las vistas
-     */
-    private static final String DIR_VIEWS = "/WEB-INF/classes/es/cabestro/todo/views";
     
     /**
      * Añade los interceptores.
@@ -62,8 +58,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/core/**").addResourceLocations(DIR_VIEWS + "/core/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("/static/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**
@@ -73,18 +71,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Bean(name = "viewResolver")
     public ViewResolver setupViewResolver() {
-        return new TilesViewResolver();
-    }
-
-    /**
-     * Configura los tiles.
-     *
-     * @return Devuelve el configurador
-     */
-    @Bean(name = "tilesConfigurer")
-    public TilesConfigurer setupTilesConfigurer() {
-        TilesConfigurer configurer = new TilesConfigurer();
-        configurer.setDefinitions(DIR_VIEWS + "/core/tiles.xml");
-        return configurer;
+        UrlBasedViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setViewClass(JstlView.class);
+        resolver.setPrefix("/WEB-INF/jsp/");
+        resolver.setSuffix(".jspx");
+        return resolver;
     }
 }
