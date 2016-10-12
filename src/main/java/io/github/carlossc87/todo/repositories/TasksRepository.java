@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,14 +14,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.carlossc87.todo.repositories;
 
-/*
- * /tasks/index
- * Pasa al dialogo la url para eliminar la tarea.
+import org.springframework.data.jpa.repository.JpaRepository;
+import io.github.carlossc87.todo.entities.Task;
+import org.springframework.stereotype.Repository;
+
+/**
+ *
+ * @author Carlos Serramito Calvo <carlossc87@gmail.com>
  */
-$('#confirmTaskDeleteModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var urlconfirm = button.data('urlconfirm');
-    var modal = $(this);
-    modal.find('#taskDeleteModal').attr("href", urlconfirm);
-});
+@Repository
+public interface TasksRepository extends JpaRepository<Task, Integer> {
+    
+}

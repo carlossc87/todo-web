@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,14 +14,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.carlossc87.todo.config;
 
-/*
- * /tasks/index
- * Pasa al dialogo la url para eliminar la tarea.
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
+/**
+ * Configuración de la aplicación.
+ * 
+ * @author Carlos Serramito Calvo <carlossc87@gmail.com>
  */
-$('#confirmTaskDeleteModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var urlconfirm = button.data('urlconfirm');
-    var modal = $(this);
-    modal.find('#taskDeleteModal').attr("href", urlconfirm);
-});
+@Configuration
+@ComponentScan("io.github.carlossc87.todo")
+@Import({WebMvcConfig.class, LocaleConfig.class, DatabaseConfig.class})
+public class Config {
+
+}

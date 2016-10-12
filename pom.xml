@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Copyright (C) 2015 Carlos Serramito Calvo <carlossc87@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>es.cabestro.todo</groupId>
+    <groupId>io.github.carlossc87.todo</groupId>
     <artifactId>todo-web</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>todo-web</name>
-    <description>ToDo Web @ Cabestro</description>
-    <url>http://cabestro.es/todo</url>
+    <description>ToDo Web</description>
+    <url>https://github.com/carlossc87/todo-web</url>
     <inceptionYear>2014</inceptionYear>
     
     <developers>
         <developer>
             <name>Carlos Serramito Calvo</name>
             <email>carlossc87@gmail.com</email>
-            <url>http://cabestro.es</url>
+            <url>https://carlossc87.github.io</url>
         </developer>
     </developers>
     
-    <organization>
-        <name>Cabestro</name>
-        <url>http://cabestro.es</url>
-    </organization>
-    
     <licenses>
         <license>
-            <name>The GNU General Public License v3.0</name>
-            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <name>GNU Affero General Public License v3.0</name>
+            <url>http://www.gnu.org/licenses/agpl-3.0.html</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
+    
+    <issueManagement>
+        <url>https://github.com/carlossc87/todo-web/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -177,13 +193,13 @@
             <resource>
                 <directory>src/main/resources/</directory>
                 <excludes>
-                    <exclude>es/cabestro/todo/locales/messages.properties</exclude>
+                    <exclude>io/github/carlossc87/todo/locales/messages.properties</exclude>
                 </excludes>
             </resource>
             <resource>
                 <directory>src/main/resources/</directory>
                 <includes>
-                    <include>es/cabestro/todo/locales/messages.properties</include>
+                    <include>io/github/carlossc87/todo/locales/messages.properties</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>
