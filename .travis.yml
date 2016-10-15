@@ -12,11 +12,6 @@ env:
 
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.login=$SONAR_TOKEN
-  - mvn -V -e -fae -B site
-
-after_success:
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
-          mvn -e -fae -B compile site-deploy --settings .travis/settings.xml;
-    else
-          echo -n "not deploying maven site";
+          mvn site --settings .travis/settings.xml;
     fi
