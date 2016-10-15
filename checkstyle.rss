@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>todo-web - Checkstyle report</title>
+    <link>https://github.com/carlossc87/todo-web</link>
+    <description>todo-web - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2014 - 2016</copyright>
+    <item>
+      <title>File: 13,
+             Errors: 231,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://github.com/carlossc87/todo-web/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://github.com/carlossc87/todo-web/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.App.java">io/github/carlossc87/todo/App.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.config.DatabaseConfig.java">io/github/carlossc87/todo/config/DatabaseConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.config.WebInitializer.java">io/github/carlossc87/todo/config/WebInitializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.validators.TaskValidator.java">io/github/carlossc87/todo/validators/TaskValidator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.services.impl.TasksServiceImpl.java">io/github/carlossc87/todo/services/impl/TasksServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.config.LocaleConfig.java">io/github/carlossc87/todo/config/LocaleConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.controllers.TasksController.java">io/github/carlossc87/todo/controllers/TasksController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  58
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.exceptions.NotFoundException.java">io/github/carlossc87/todo/exceptions/NotFoundException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.entities.Task.java">io/github/carlossc87/todo/entities/Task.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.repositories.TasksRepository.java">io/github/carlossc87/todo/repositories/TasksRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.config.WebMvcConfig.java">io/github/carlossc87/todo/config/WebMvcConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.controllers.ExceptionsController.java">io/github/carlossc87/todo/controllers/ExceptionsController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/carlossc87/todo-web/checkstyle.html#io.github.carlossc87.todo.services.TasksService.java">io/github/carlossc87/todo/services/TasksService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

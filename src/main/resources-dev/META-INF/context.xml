@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/todo">
-  <Resource name="jdbc/todo" username="todo" password="todo" url="jdbc:derby://localhost:1527/todo" maxActive="100" maxIdle="30" maxWait="10000" auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" type="javax.sql.DataSource" />
-</Context>

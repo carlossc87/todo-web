@@ -1,0 +1,9 @@
+io.github.carlossc87.todo
+io.github.carlossc87.todo.config
+io.github.carlossc87.todo.controllers
+io.github.carlossc87.todo.entities
+io.github.carlossc87.todo.exceptions
+io.github.carlossc87.todo.repositories
+io.github.carlossc87.todo.services
+io.github.carlossc87.todo.services.impl
+io.github.carlossc87.todo.validators
