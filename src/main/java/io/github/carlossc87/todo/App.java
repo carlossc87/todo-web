@@ -14,8 +14,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.carlossc87.todo.config;
+package io.github.carlossc87.todo;
 
+import io.github.carlossc87.todo.config.DatabaseConfig;
+import io.github.carlossc87.todo.config.LocaleConfig;
+import io.github.carlossc87.todo.config.WebMvcConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -26,8 +29,8 @@ import org.springframework.context.annotation.Import;
  * @author Carlos Serramito Calvo <carlossc87@gmail.com>
  */
 @Configuration
-@ComponentScan("io.github.carlossc87.todo")
+@ComponentScan
 @Import({WebMvcConfig.class, LocaleConfig.class, DatabaseConfig.class})
-public class Config {
+public class App {
 
 }

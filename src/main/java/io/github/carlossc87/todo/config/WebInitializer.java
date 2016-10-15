@@ -16,6 +16,7 @@
  */
 package io.github.carlossc87.todo.config;
 
+import io.github.carlossc87.todo.App;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -42,7 +43,7 @@ public class WebInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         // Clase con la configuración de la aplicación
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(Config.class); 
+        ctx.register(App.class); 
         ctx.setServletContext(servletContext); 
 
         servletContext.setInitParameter("defaultHtmlEscape", "false");

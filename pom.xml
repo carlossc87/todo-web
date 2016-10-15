@@ -27,7 +27,7 @@
 
     <name>todo-web</name>
     <description>ToDo Web</description>
-    <url>https://github.com/carlossc87/todo-web</url>
+    <url>https://carlossc87.github.io/todo-web/</url>
     <inceptionYear>2014</inceptionYear>
     
     <developers>
@@ -47,15 +47,21 @@
     </licenses>
     
     <issueManagement>
-        <url>https://github.com/carlossc87/todo-web/issues</url>
         <system>GitHub Issues</system>
+        <url>https://github.com/carlossc87/todo-web/issues</url>
     </issueManagement>
     
     <scm>
         <url>https://github.com/carlossc87/todo-web</url>
         <connection>scm:git:git://github.com/carlossc87/todo-web.git</connection>
-        <developerConnection>scm:git:git@github.com:carlossc87/todo-web.git</developerConnection>
+        <developerConnection>scm:git:git://github.com/carlossc87/todo-web.git</developerConnection>
+        <tag>master</tag>
     </scm>
+    
+    <ciManagement>
+        <system>Travis</system>
+        <url>https://travis-ci.org/carlossc87/todo-web</url>
+    </ciManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -214,13 +220,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.0</version>
+                <version>3.5.1</version>
                 <configuration>
+                    <generateSitemap>true</generateSitemap>
+                    <locales>en</locales>
+                    <outputEncoding>UTF-8</outputEncoding>
+                    <skipDeploy>true</skipDeploy>
                     <reportPlugins>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-project-info-reports-plugin</artifactId>
-                            <version>2.2</version>
+                            <version>2.9</version>
                             <configuration>
                                 <dependencyDetailsEnabled>true</dependencyDetailsEnabled>
                                 <dependencyLocationsEnabled>true</dependencyLocationsEnabled>
@@ -229,7 +239,7 @@
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-javadoc-plugin</artifactId>
-                            <version>2.7</version>
+                            <version>2.10.4</version>
                             <configuration>
                                 <additionalparam>-Xdoclint:none</additionalparam>
                             </configuration>
@@ -237,42 +247,15 @@
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-surefire-report-plugin</artifactId>
-                            <version>2.6</version>
+                            <version>2.19.1</version>
                         </plugin>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-checkstyle-plugin</artifactId>
-                            <version>2.6</version>
+                            <version>2.16</version>
                         </plugin>
                     </reportPlugins>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.7</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <additionalparam>-Xdoclint:none</additionalparam>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
         <resources>
@@ -299,40 +282,4 @@
             </resource>
         </resources>
     </build>
-    
-    <profiles>
-        <profile>
-            <id>development-profile</id>
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources-dev</directory>
-                        <targetPath>${project.build.directory}/${project.build.finalName}/</targetPath>
-                    </resource>
-                </resources>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.derby</groupId>
-                    <artifactId>derbyclient</artifactId>
-                    <version>10.11.1.1</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>release-profile</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources-pro</directory>
-                        <targetPath>${project.build.directory}/${project.build.finalName}/</targetPath>
-                    </resource>
-                </resources>
-            </build>
-        </profile>
-    </profiles>
 </project>
