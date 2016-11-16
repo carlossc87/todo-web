@@ -21,6 +21,7 @@ import io.github.carlossc87.todo.app.services.dtos.TaskDto;
 import io.github.carlossc87.todo.ui.web.mappers.TaskModelMapper;
 import io.github.carlossc87.todo.ui.web.models.TaskModel;
 import io.github.carlossc87.todo.ui.web.validators.TaskValidator;
+import java.util.List;
 import java.util.Locale;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -75,7 +76,8 @@ public class TasksController {
     @RequestMapping(value={"","index"})
     public String index(Model model, Locale locale){
         LOG.error("Mostrar todas las tareas.");
-        model.addAttribute("tasks", tasksService.list());
+        List<TaskModel> taskModels = taskModelMapper.taskDtosToTaskModels(tasksService.list());
+        model.addAttribute("tasks", taskModels);
         return TASKS_INDEX;
     }
     

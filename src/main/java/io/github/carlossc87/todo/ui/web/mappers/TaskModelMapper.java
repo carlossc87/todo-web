@@ -18,6 +18,7 @@ package io.github.carlossc87.todo.ui.web.mappers;
 
 import io.github.carlossc87.todo.app.services.dtos.TaskDto;
 import io.github.carlossc87.todo.ui.web.models.TaskModel;
+import java.util.List;
 import org.mapstruct.Mapper;
 
 /**
@@ -27,6 +28,8 @@ import org.mapstruct.Mapper;
 @Mapper( componentModel = "spring" )
 public interface TaskModelMapper {
     
-    TaskDto taskModelToTaskDto(TaskModel taskModel); 
+   List<TaskModel> taskDtosToTaskModels(List<TaskDto> taskModels);
+   
+   TaskDto taskModelToTaskDto(TaskModel taskModel); 
     
 }
