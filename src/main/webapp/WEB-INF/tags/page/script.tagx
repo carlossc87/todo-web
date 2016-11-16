@@ -38,8 +38,7 @@
             <spring:url var="url" value="/webjars${webJarsUrl}"/>            
         </c:when>
         <c:otherwise>
-            <spring:message var="projectVersion" code="project.version" />
-            <spring:url var="url" value="/static/${projectVersion}/js/${name}"/>
+            <spring:url var="url" value="/assets/js/${name}"/>
         </c:otherwise>
     </c:choose>
     

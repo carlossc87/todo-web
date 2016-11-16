@@ -45,7 +45,10 @@
                         </c:if>
                     </div>
                 </c:if>
-                <div class="form-group <c:if test="${not empty titleError}">has-error has-feedback</c:if>">
+                <c:if test="${not empty titleError}">
+                    <c:set var="class-error" value="has-error has-feedback" />
+                </c:if>
+                <div class="form-group ${class-error}">
                     <spring:message code="views.tasks.add.field.title" var="fieldTitle" />
                     <form:label path="title" cssClass="col-sm-2 control-label">
                         ${fieldTitle}

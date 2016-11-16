@@ -37,7 +37,7 @@
             <title><spring:message code="${title}"/></title>
             <page:style name="bootstrap.min.css" webjars="true"/>
             <page:style name="bootstrap-theme.min.css" webjars="true"/>
-            <page:style name="style.min.css"/>
+            <page:style name="style.css"/>
         </head>
         <body role="document">
             <page:header>
@@ -56,8 +56,7 @@
             <page:script name="jquery.min.js" webjars="true"/>
             <page:script name="bootstrap.min.js" webjars="true"/>
             <page:script name="html5shiv.min.js" webjars="true" condition="lt IE 9"/>
-            <page:script name="respond.min.js" webjars="true" condition="lt IE 9"/>
-            <page:script name="script.min.js"/>
+            <page:script name="script.js"/>
         </body>
     </html>
 </jsp:root>

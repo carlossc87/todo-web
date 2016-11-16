@@ -65,18 +65,15 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>4.3.3.RELEASE</spring.version>
+        <org.mapstruct.version>1.1.0.CR2</org.mapstruct.version>
     </properties>
     
-    <dependencies>
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>       
+    <dependencies>    
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>4.1.1.RELEASE</version>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>
@@ -87,27 +84,65 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>4.1.1.RELEASE</version>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>1.7.1.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.7</version>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        
+        <!-- Frontend -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-taglib</artifactId>
+            <version>0.3</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.6.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>1.11.1</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
@@ -119,29 +154,32 @@
             <artifactId>html5shiv</artifactId>
             <version>3.7.2</version>
         </dependency>
+        
+        <!-- Provided -->
         <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>webjars-taglib</artifactId>
-            <version>0.2</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+            <scope>provided</scope>
         </dependency>
         
         <!-- Runtime -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.7</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.2.Final</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.1</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.1</version>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator-jboss-vfs</artifactId>
+            <version>0.1.0</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
@@ -151,11 +189,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.5.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <showDeprecation>true</showDeprecation>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
@@ -171,34 +216,6 @@
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.samaxes.maven</groupId>
-                <artifactId>minify-maven-plugin</artifactId>
-                <version>1.7.4</version>
-                <executions>
-                    <execution>
-                        <id>default-minify</id>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <charset>${project.build.sourceEncoding}</charset>
-                            <cssSourceDir>WEB-INF/static/css/</cssSourceDir>
-                            <cssTargetDir>static/${project.version}/css/</cssTargetDir>
-                            <cssSourceIncludes>
-                                <cssSourceInclude>**/*.css</cssSourceInclude>
-                            </cssSourceIncludes>
-                            <jsSourceDir>WEB-INF/static/js/</jsSourceDir>
-                            <jsTargetDir>static/${project.version}/js/</jsTargetDir>
-                            <jsSourceIncludes>
-                                <jsSourceInclude>**/*.js</jsSourceInclude>
-                            </jsSourceIncludes>
-                            <jsEngine>CLOSURE</jsEngine>
-                        </configuration>
-                        <goals>
-                            <goal>minify</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>com.github.github</groupId>
@@ -260,26 +277,9 @@
         </plugins>
         <resources>
             <resource>
-                <directory>src/main/resources/</directory>
-                <excludes>
-                    <exclude>io/github/carlossc87/todo/locales/messages.properties</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources/</directory>
-                <includes>
-                    <include>io/github/carlossc87/todo/locales/messages.properties</include>
-                </includes>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
-            <resource>
-                <directory>src/main/webapp/WEB-INF/static/</directory>
-                <excludes>
-                    <exclude>src/main/webapp/WEB-INF/static/css/**/*.*</exclude>
-                    <exclude>src/main/webapp/WEB-INF/static/js/**/*.*</exclude>
-                </excludes>
-                <targetPath>${project.build.directory}/${project.build.finalName}/WEB-INF/static/${project.version}/</targetPath>
-            </resource>
-        </resources>
+        </resources> 
     </build>
 </project>
