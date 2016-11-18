@@ -242,20 +242,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.TasksService.java">io/github/carlossc87/todo/app/services/TasksService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.DatabaseConfig.java">io/github/carlossc87/todo/DatabaseConfig.java</a>
                 </td>
                 <td>
@@ -266,6 +252,20 @@ under the License.
                 </td>
                 <td>
                   14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.TasksService.java">io/github/carlossc87/todo/app/services/TasksService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
                 </td>
               </tr>
                           <tr>
