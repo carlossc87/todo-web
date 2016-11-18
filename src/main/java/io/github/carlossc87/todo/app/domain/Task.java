@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,52 +24,52 @@ import javax.persistence.Id;
 
 /**
  * La entidad para las tareas.
- * 
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ *
+ * @author Carlos Serramito Calvo
  */
 @Entity
 public class Task implements Serializable {
-    
-    static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    private String title;
 
-    /**
-     * Obtiene el identificador de la tarea.
-     * 
-     * @return Devuelve el identificador de la tarea
-     */
-    public Integer getId() {
-        return id;
-    }
+  static final long serialVersionUID = 1L;
 
-    /**
-     * Establece el identificador de la tarea.
-     * 
-     * @param id El identificador de la tarea
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+  private String title;
 
-    /**
-     * Obtiene el título de la tarea.
-     * 
-     * @return Devuelve el titulo de la tarea
-     */
-    public String getTitle() {
-        return title;
-    }
+  /**
+   * Obtiene el identificador de la tarea.
+   *
+   * @return Devuelve el identificador de la tarea
+   */
+  public Integer getId() {
+    return id;
+  }
 
-    /**
-     * Establece el título de la tarea.
-     * 
-     * @param title El título de la tarea
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  /**
+   * Establece el identificador de la tarea.
+   *
+   * @param id El identificador de la tarea
+   */
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  /**
+   * Obtiene el título de la tarea.
+   *
+   * @return Devuelve el titulo de la tarea
+   */
+  public String getTitle() {
+    return title;
+  }
+
+  /**
+   * Establece el título de la tarea.
+   *
+   * @param title El título de la tarea
+   */
+  public void setTitle(String title) {
+    this.title = title;
+  }
 }

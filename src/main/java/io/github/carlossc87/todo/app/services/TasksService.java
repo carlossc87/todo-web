@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -29,46 +29,46 @@ import org.springframework.web.util.HtmlUtils;
 
 /**
  *
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ * @author Carlos Serramito Calvo
  */
 @Service("tasksService")
 public class TasksService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TasksService.class);
+  private static final Logger LOG = LoggerFactory.getLogger(TasksService.class);
 
-    @Autowired
-    private TasksRepository tasksRepository;
-    
-    @Autowired
-    private TaskMapper taskMapper;
+  @Autowired
+  private TasksRepository tasksRepository;
 
-    public List<TaskDto> list() {
-        LOG.debug("Busca todas las tareas.");
-        List<Task> tasks = tasksRepository.findAll();
-        return taskMapper.tasksToTaskDtos(tasks);
-    }
+  @Autowired
+  private TaskMapper taskMapper;
 
-    public TaskDto find(Integer id) {
-        LOG.debug("Busca una tarea en concreto por el id.");
-        Task task = tasksRepository.findOne(id);
-        return taskMapper.taskToTaskDto(task);
-    }
+  public List<TaskDto> list() {
+    LOG.debug("Busca todas las tareas.");
+    List<Task> tasks = tasksRepository.findAll();
+    return taskMapper.tasksToTaskDtos(tasks);
+  }
 
-    public void save(TaskDto taskDto) {
-        LOG.debug("Guarda una nueva tarea o una existente.");
+  public TaskDto find(Integer id) {
+    LOG.debug("Busca una tarea en concreto por el id.");
+    Task task = tasksRepository.findOne(id);
+    return taskMapper.taskToTaskDto(task);
+  }
 
-        // Eliminamos los espacios al comienzo y al final.
-        taskDto.setTitle(taskDto.getTitle().trim());
+  public void save(TaskDto taskDto) {
+    LOG.debug("Guarda una nueva tarea o una existente.");
 
-        // Eliminamos los caracteres especiales de html.
-        taskDto.setTitle(HtmlUtils.htmlEscapeDecimal(taskDto.getTitle()));
+    // Eliminamos los espacios al comienzo y al final.
+    taskDto.setTitle(taskDto.getTitle().trim());
 
-        Task task = taskMapper.taskDtoToTask(taskDto);
-        tasksRepository.save(task);
-    }
+    // Eliminamos los caracteres especiales de html.
+    taskDto.setTitle(HtmlUtils.htmlEscapeDecimal(taskDto.getTitle()));
 
-    public void delete(Integer id) {
-        LOG.debug("Elimina una tarea.");
-        tasksRepository.delete(id);
-    }
+    Task task = taskMapper.taskDtoToTask(taskDto);
+    tasksRepository.save(task);
+  }
+
+  public void delete(Integer id) {
+    LOG.debug("Elimina una tarea.");
+    tasksRepository.delete(id);
+  }
 }

@@ -23,14 +23,14 @@ import org.mapstruct.Mapper;
 
 /**
  *
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ * @author Carlos Serramito Calvo
  */
-@Mapper( componentModel = "spring" )
+@Mapper(componentModel = "spring")
 public interface TaskMapper {
-    
-    List<TaskDto> tasksToTaskDtos(List<Task> taskEntity);
-    
-    TaskDto taskToTaskDto(Task taskEntity); 
-    
-    Task taskDtoToTask(TaskDto task);
+
+  List<TaskDto> tasksToTaskDtos(List<Task> taskEntity);
+
+  TaskDto taskToTaskDto(Task taskEntity);
+
+  Task taskDtoToTask(TaskDto task);
 }

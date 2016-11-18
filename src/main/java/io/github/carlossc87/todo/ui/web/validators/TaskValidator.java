@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,47 +24,47 @@ import org.springframework.validation.Validator;
 
 /**
  * El validador para la entidad task.
- * 
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ *
+ * @author Carlos Serramito Calvo
  */
 public class TaskValidator implements Validator {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TaskValidator.class);
-    
-    private static final int MAX_SIZE_TITLE = 10;
-    
-    /**
-     * Comprueba si la clase es de tipo tarea.
-     * 
-     * @param type El tipo de la clase
-     * @return Devuelve true si la clase es una tarea o false de lo contrario
-     */
-    @Override
-    public boolean supports(Class<?> type) {
-        return TaskModel.class.equals(type);
+  private static final Logger LOG = LoggerFactory.getLogger(TaskValidator.class);
+
+  private static final int MAX_SIZE_TITLE = 10;
+
+  /**
+   * Comprueba si la clase es de tipo tarea.
+   *
+   * @param type El tipo de la clase
+   * @return Devuelve true si la clase es una tarea o false de lo contrario
+   */
+  @Override
+  public boolean supports(Class<?> type) {
+    return TaskModel.class.equals(type);
+  }
+
+  /**
+   * Valida una tarea.
+   *
+   * @param o La clase a validar
+   * @param errors La lista de errores que se detecten
+   */
+  @Override
+  public void validate(Object o, Errors errors) {
+    LOG.debug("Validar una tarea.");
+    TaskModel todo = (TaskModel) o;
+    boolean hasTitle = true;
+
+    LOG.debug("Comprobando si se pasa un título.");
+    if (todo.getTitle() == null || todo.getTitle().trim().isEmpty()) {
+      errors.rejectValue("title", "validators.task.title.requerido");
+      hasTitle = false;
     }
 
-    /**
-     * Valida una tarea.
-     * 
-     * @param o La clase a validar
-     * @param errors La lista de errores que se detecten
-     */
-    @Override
-    public void validate(Object o, Errors errors) {
-        LOG.debug("Validar una tarea.");
-        TaskModel todo = (TaskModel) o;
-        boolean hasTitle = true;
-        
-        LOG.debug("Comprobando si se pasa un título.");
-        if( todo.getTitle() == null || todo.getTitle().trim().isEmpty() ){
-            errors.rejectValue("title", "validators.task.title.requerido");
-            hasTitle = false;
-        }
-        
-        LOG.debug("Comprobando si el título es mayor de del limite.");
-        if ( hasTitle && todo.getTitle().length() < MAX_SIZE_TITLE){
-            errors.rejectValue("title", "validators.task.title.min10");
-        }
+    LOG.debug("Comprobando si el título es mayor de del limite.");
+    if (hasTitle && todo.getTitle().length() < MAX_SIZE_TITLE) {
+      errors.rejectValue("title", "validators.task.title.min10");
     }
+  }
 }

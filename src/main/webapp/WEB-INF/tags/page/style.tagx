@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Copyright (C) 2015 Carlos Serramito Calvo <carlossc87@gmail.com>
+  Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" 
           xmlns:c="http://java.sun.com/jsp/jstl/core"
           xmlns:webjars="http://www.webjars.org/tags"
           xmlns:spring="http://www.springframework.org/tags">
-    
-    <jsp:directive.tag pageEncoding="UTF-8" 
-                       description="Carga en la página una hoja de estilos."/> 
-    
-    <jsp:directive.attribute name="name" 
-                             required="true" 
-                             description="El nombre del archivo con los estilos."/>
-    <jsp:directive.attribute name="webjars" 
-                             type="java.lang.Boolean" 
-                             description="Indica si proviene de un webjar o es de la aplicación."/>
-    <jsp:directive.attribute name="condition" 
-                             description="Establece una condición html para cargar el estilo."/>
-    
-    <c:choose>
-        <c:when test="${webjars}">
-            <webjars:locate var="webJarsUrl" path="${name}"/>
-            <spring:url var="url" value="/webjars${webJarsUrl}"/>
-        </c:when>
-        <c:otherwise>
-            <spring:url var="url" value="/assets/css/${name}"/>
-        </c:otherwise>
-    </c:choose> 
-    
-    <c:if test="${not empty condition}">
-        <![CDATA[<!--[if ${condition}]><link rel="stylesheet" href="${url}"/><![endif]-->]]>
-    </c:if>
-    <c:if test="${empty condition}">
-        <link rel="stylesheet" href="${url}"/>
-    </c:if>
-        
+
+  <jsp:directive.tag pageEncoding="UTF-8" 
+                     description="Carga en la página una hoja de estilos."/> 
+
+  <jsp:directive.attribute name="name" 
+                           required="true" 
+                           description="El nombre del archivo con los estilos."/>
+  <jsp:directive.attribute name="webjars" 
+                           type="java.lang.Boolean" 
+                           description="Indica si proviene de un webjar o es de la aplicación."/>
+  <jsp:directive.attribute name="condition" 
+                           description="Establece una condición html para cargar el estilo."/>
+
+  <c:choose>
+    <c:when test="${webjars}">
+      <webjars:locate var="webJarsUrl" path="${name}"/>
+      <spring:url var="url" value="/webjars${webJarsUrl}"/>
+    </c:when>
+    <c:otherwise>
+      <spring:url var="url" value="/assets/css/${name}"/>
+    </c:otherwise>
+  </c:choose> 
+
+  <c:if test="${not empty condition}">
+      <![CDATA[<!--[if ${condition}]><link rel="stylesheet" href="${url}"/><![endif]-->]]>
+  </c:if>
+  <c:if test="${empty condition}">
+    <link rel="stylesheet" href="${url}"/>
+  </c:if>
+
 </jsp:root>

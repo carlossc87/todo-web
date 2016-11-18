@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -35,73 +35,73 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 /**
  * Configuración del MVC de Spring.
  *
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ * @author Carlos Serramito Calvo
  */
 @Configuration
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(setupLocaleChangeInterceptor());
-    }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(setupLocaleChangeInterceptor());
+  }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/assets/**")
-                .addResourceLocations("/assets/");
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/assets/**")
+            .addResourceLocations("/assets/");
+    registry.addResourceHandler("/webjars/**")
+            .addResourceLocations("classpath:/META-INF/resources/webjars/");
+  }
 
-    /**
-     * Configura un interceptor para capturar el idioma de la página.
-     * 
-     * @return  Devuelve el interceptor para el idioma
-     */
-    @Bean(name = "localeInterceptor")
-    public LocaleChangeInterceptor setupLocaleChangeInterceptor(){
-        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("lang");
-        return interceptor;
-    }
-    
-    /**
-     * Configura el resolvedor de los locale.
-     * 
-     * @return Devuelve el resolvedor de los locale
-     */
-    @Bean(name = "localeResolver")
-    public SessionLocaleResolver setupSessionLocaleResolver(){
-        SessionLocaleResolver resolver = new SessionLocaleResolver();
-        Locale locale = new Locale("es","ES");
-        resolver.setDefaultLocale(locale);
-        return resolver;
-    }
-    
-    /**
-     * Configura la fuente de los mensajes.
-     * 
-     * @return Devuelve la fuente de los mensajes
-     */
-    @Bean(name = "messageSource")
-    public AbstractMessageSource setupReloadableResourceBundleMessageSource(){
-        ResourceBundleMessageSource messageSource =  new ResourceBundleMessageSource();
-        messageSource.setBasenames("messages");
-        return messageSource;
-    }
-    
-    /**
-     * Configura el resolvedor de las vistas.
-     *
-     * @return Devuelve el resolvedor
-     */
-    @Bean(name = "viewResolver")
-    public ViewResolver setupViewResolver() {
-        UrlBasedViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setViewClass(JstlView.class);
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jspx");
-        return resolver;
-    }
+  /**
+   * Configura un interceptor para capturar el idioma de la página.
+   *
+   * @return Devuelve el interceptor para el idioma
+   */
+  @Bean(name = "localeInterceptor")
+  public LocaleChangeInterceptor setupLocaleChangeInterceptor() {
+    LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+    interceptor.setParamName("lang");
+    return interceptor;
+  }
+
+  /**
+   * Configura el resolvedor de los locale.
+   *
+   * @return Devuelve el resolvedor de los locale
+   */
+  @Bean(name = "localeResolver")
+  public SessionLocaleResolver setupSessionLocaleResolver() {
+    SessionLocaleResolver resolver = new SessionLocaleResolver();
+    Locale locale = new Locale("es", "ES");
+    resolver.setDefaultLocale(locale);
+    return resolver;
+  }
+
+  /**
+   * Configura la fuente de los mensajes.
+   *
+   * @return Devuelve la fuente de los mensajes
+   */
+  @Bean(name = "messageSource")
+  public AbstractMessageSource setupReloadableResourceBundleMessageSource() {
+    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+    messageSource.setBasenames("messages");
+    return messageSource;
+  }
+
+  /**
+   * Configura el resolvedor de las vistas.
+   *
+   * @return Devuelve el resolvedor
+   */
+  @Bean(name = "viewResolver")
+  public ViewResolver setupViewResolver() {
+    UrlBasedViewResolver resolver = new InternalResourceViewResolver();
+    resolver.setViewClass(JstlView.class);
+    resolver.setPrefix("/WEB-INF/jsp/");
+    resolver.setSuffix(".jspx");
+    return resolver;
+  }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,23 +25,23 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * Configuración de la aplicación.
- * 
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ *
+ * @author Carlos Serramito Calvo
  */
 @Configuration
 @ComponentScan
 @PropertySource("classpath:app.properties")
 @Import({WebConfig.class, DatabaseConfig.class})
 public class AppConfig {
-    
-    /**
-     * Genera el configurador para el acceso a los archivos de propiedades.
-     * 
-     * @return Devuelve el configurador para el acceso a las propiedades
-     */
-    @Bean(name = "PropertySourcesPlaceholderConfigurer")
-    public PropertySourcesPlaceholderConfigurer setupPropertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-    
+
+  /**
+   * Genera el configurador para el acceso a los archivos de propiedades.
+   *
+   * @return Devuelve el configurador para el acceso a las propiedades
+   */
+  @Bean(name = "PropertySourcesPlaceholderConfigurer")
+  public PropertySourcesPlaceholderConfigurer setupPropertySourcesPlaceholderConfigurer() {
+    return new PropertySourcesPlaceholderConfigurer();
+  }
+
 }

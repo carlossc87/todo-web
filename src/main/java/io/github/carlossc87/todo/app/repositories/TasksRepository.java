@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,9 +22,9 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ * @author Carlos Serramito Calvo
  */
 @Repository
 public interface TasksRepository extends JpaRepository<Task, Integer> {
-    
+
 }

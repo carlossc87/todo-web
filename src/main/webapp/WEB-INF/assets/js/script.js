@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,8 +20,8 @@
  * Pasa al dialogo la url para eliminar la tarea.
  */
 $('#confirmTaskDeleteModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var urlconfirm = button.data('urlconfirm');
-    var modal = $(this);
-    modal.find('#taskDeleteModal').attr("href", urlconfirm);
+  var button = $(event.relatedTarget);
+  var urlconfirm = button.data('urlconfirm');
+  var modal = $(this);
+  modal.find('#taskDeleteModal').attr("href", urlconfirm);
 });

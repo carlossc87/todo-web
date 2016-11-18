@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Carlos Serramito Calvo <carlossc87@gmail.com>
+ * Copyright (C) 2016 Carlos Serramito Calvo <carlossc87@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -29,75 +29,75 @@ import org.springframework.web.servlet.DispatcherServlet;
 /**
  * Configurador de los servlet de la aplicación programaticamente.
  *
- * @author Carlos Serramito Calvo <carlossc87@gmail.com>
+ * @author Carlos Serramito Calvo
  */
 public class WebInitializer implements WebApplicationInitializer {
 
-    @Override
-    public void onStartup(ServletContext servletContext)
-            throws ServletException {
-        WebApplicationContext springContext = setupSpringContext(servletContext);
-        setupHtmlEscape(servletContext);
-        setupEncoding(servletContext);
-        setupSpringServlet(springContext, servletContext);
-    }
+  @Override
+  public void onStartup(ServletContext servletContext)
+          throws ServletException {
+    WebApplicationContext springContext = setupSpringContext(servletContext);
+    setupHtmlEscape(servletContext);
+    setupEncoding(servletContext);
+    setupSpringServlet(springContext, servletContext);
+  }
 
-    /**
-     * Configuramos el contexto de Spring para la aplicación web.
-     *
-     * @param servletContext Contexto de los servlets
-     * @return Devuelve el contexto de Spring
-     */
-    private WebApplicationContext setupSpringContext(
-            ServletContext servletContext) {
-        AnnotationConfigWebApplicationContext springContext
-                = new AnnotationConfigWebApplicationContext();
-        springContext.register(AppConfig.class);
-        springContext.setServletContext(servletContext);
-        return springContext;
-    }
+  /**
+   * Configuramos el contexto de Spring para la aplicación web.
+   *
+   * @param servletContext Contexto de los servlets
+   * @return Devuelve el contexto de Spring
+   */
+  private WebApplicationContext setupSpringContext(
+          ServletContext servletContext) {
+    AnnotationConfigWebApplicationContext springContext
+            = new AnnotationConfigWebApplicationContext();
+    springContext.register(AppConfig.class);
+    springContext.setServletContext(servletContext);
+    return springContext;
+  }
 
-    /**
-     * Configura si se escapa o no el código html desde los tag de Spring MVC.
-     *
-     * @param servletContext Contexto de los servlets
-     */
-    private void setupHtmlEscape(ServletContext servletContext) {
-        servletContext.setInitParameter("defaultHtmlEscape",
-                Boolean.toString(false));
-    }
+  /**
+   * Configura si se escapa o no el código html desde los tag de Spring MVC.
+   *
+   * @param servletContext Contexto de los servlets
+   */
+  private void setupHtmlEscape(ServletContext servletContext) {
+    servletContext.setInitParameter("defaultHtmlEscape",
+            Boolean.toString(false));
+  }
 
-    /**
-     * Configura la codificación de entrada y salida de los servlets.
-     *
-     * @param servletContext Contexto de los servlets
-     */
-    private void setupEncoding(ServletContext servletContext) {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding(StandardCharsets.UTF_8.displayName());
-        filter.setForceEncoding(true);
-        servletContext
-                .addFilter(filter.getClass().getSimpleName(), filter)
-                .addMappingForUrlPatterns(null, true, "/*");
-    }
+  /**
+   * Configura la codificación de entrada y salida de los servlets.
+   *
+   * @param servletContext Contexto de los servlets
+   */
+  private void setupEncoding(ServletContext servletContext) {
+    CharacterEncodingFilter filter = new CharacterEncodingFilter();
+    filter.setEncoding(StandardCharsets.UTF_8.displayName());
+    filter.setForceEncoding(true);
+    servletContext
+            .addFilter(filter.getClass().getSimpleName(), filter)
+            .addMappingForUrlPatterns(null, true, "/*");
+  }
 
-    /**
-     * Configura el servlet para Spring.
-     *
-     * @param springContext Contexto de Spring
-     * @param servletContext Contexto de los servlets
-     */
-    private void setupSpringServlet(WebApplicationContext springContext,
-            ServletContext servletContext) {
-        DispatcherServlet dispatcherServletSpring
-                = new DispatcherServlet(springContext);
-        dispatcherServletSpring.
-                setThrowExceptionIfNoHandlerFound(true);
-        ServletRegistration.Dynamic servlet = servletContext.addServlet(
-                dispatcherServletSpring.getClass().getSimpleName(),
-                dispatcherServletSpring);
-        servlet.addMapping("/");
-        servlet.setLoadOnStartup(1);
-    }
+  /**
+   * Configura el servlet para Spring.
+   *
+   * @param springContext Contexto de Spring
+   * @param servletContext Contexto de los servlets
+   */
+  private void setupSpringServlet(WebApplicationContext springContext,
+          ServletContext servletContext) {
+    DispatcherServlet dispatcherServletSpring
+            = new DispatcherServlet(springContext);
+    dispatcherServletSpring.
+            setThrowExceptionIfNoHandlerFound(true);
+    ServletRegistration.Dynamic servlet = servletContext.addServlet(
+            dispatcherServletSpring.getClass().getSimpleName(),
+            dispatcherServletSpring);
+    servlet.addMapping("/");
+    servlet.setLoadOnStartup(1);
+  }
 
 }
