@@ -19,7 +19,7 @@ package io.github.carlossc87.todo.ui.web.models;
 import java.io.Serializable;
 
 /**
- * La entidad para las tareas.
+ * El modelo para las tareas.
  *
  * @author Carlos Serramito Calvo
  */

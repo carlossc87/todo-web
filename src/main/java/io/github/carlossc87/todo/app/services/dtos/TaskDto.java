@@ -16,13 +16,17 @@
  */
 package io.github.carlossc87.todo.app.services.dtos;
 
+import java.io.Serializable;
+
 /**
- * La entidad para las tareas.
+ * Los datos de la tarea.
  *
  * @author Carlos Serramito Calvo
  */
-public class TaskDto {
+public class TaskDto implements Serializable {
 
+  static final long serialVersionUID = 1L;
+  
   private Integer id;
   private String title;
 

@@ -23,7 +23,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * El validador para la entidad task.
+ * El validador para la tarea.
  *
  * @author Carlos Serramito Calvo
  */

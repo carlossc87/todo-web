@@ -22,16 +22,34 @@ import java.util.List;
 import org.mapstruct.Mapper;
 
 /**
- *
+ * Mapea objetos de la clase TaskModel a otras clases.
+ * 
  * @author Carlos Serramito Calvo
  */
 @Mapper(componentModel = "spring")
 public interface TaskModelMapper {
 
+  /**
+   * Mapea un objeto TaskDto a TaskModel.
+   * 
+   * @param taskDto El objeto de la clase TaskDto a mapear.
+   * @return El objeto de la clase TaskModel mapeada.
+   */
   TaskModel taskDtoToTaskModel(TaskDto taskDto);
   
-  List<TaskModel> taskDtosToTaskModels(List<TaskDto> taskModels);
+  /**
+   * Mapea un lista de TaskDto a una lista de TaskModel.
+   * @param taskDtos La lista de la clase TaskDto a mapear
+   * @return Lista de la clase TaskModel resultante mapeada.
+   */
+  List<TaskModel> taskDtosToTaskModels(List<TaskDto> taskDtos);
   
+  /**
+   * Mapea un objeto TaskModel a TaskDto
+   * 
+   * @param taskModel El objeto de la clase TaskModel a mapear.
+   * @return El objeto de la clase TaskDto mapeada.
+   */
   TaskDto taskModelToTaskDto(TaskModel taskModel);
 
 }

@@ -32,7 +32,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- *
+ * Configuración de la base de datos.
+ * 
  * @author Carlos Serramito Calvo
  */
 @Configuration

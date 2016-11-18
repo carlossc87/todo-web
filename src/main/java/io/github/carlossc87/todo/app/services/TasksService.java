@@ -28,7 +28,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- *
+ * Servicios para las tareas.
+ * 
  * @author Carlos Serramito Calvo
  */
 @Service("tasksService")
@@ -42,18 +43,34 @@ public class TasksService {
   @Autowired
   private TaskMapper taskMapper;
 
+  /**
+   * Obtiene todas las tareas.
+   * 
+   * @return La lista de las tareas
+   */
   public List<TaskDto> list() {
     LOG.debug("Busca todas las tareas.");
     List<Task> tasks = tasksRepository.findAll();
     return taskMapper.tasksToTaskDtos(tasks);
   }
 
+  /**
+   * Obtiene la tarea con el id especificado.
+   * 
+   * @param id El id de la tarea
+   * @return La tarea con el id o null si no existe
+   */
   public TaskDto find(Integer id) {
     LOG.debug("Busca una tarea en concreto por el id.");
     Task task = tasksRepository.findOne(id);
     return taskMapper.taskToTaskDto(task);
   }
 
+  /**
+   * Guarda la tarea.
+   * 
+   * @param taskDto La tarea a guardar
+   */
   public void save(TaskDto taskDto) {
     LOG.debug("Guarda una nueva tarea o una existente.");
 
@@ -67,6 +84,11 @@ public class TasksService {
     tasksRepository.save(task);
   }
 
+  /**
+   * Elimina la tarea del id especificado.
+   * 
+   * @param id El id de la tarea a eliminar.
+   */
   public void delete(Integer id) {
     LOG.debug("Elimina una tarea.");
     tasksRepository.delete(id);
