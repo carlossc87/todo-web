@@ -30,11 +30,21 @@ import javax.persistence.Id;
 @Entity
 public class Task implements Serializable {
 
+  /**
+   * Version de la clase a serializar.
+   */
   static final long serialVersionUID = 1L;
 
+  /**
+   * Identificador de la tarea.
+   */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+  
+  /**
+   * Título de la tarea.
+   */
   private String title;
 
   /**
@@ -42,7 +52,7 @@ public class Task implements Serializable {
    *
    * @return Devuelve el identificador de la tarea
    */
-  public Integer getId() {
+  public final Integer getId() {
     return id;
   }
 
@@ -51,7 +61,7 @@ public class Task implements Serializable {
    *
    * @param id El identificador de la tarea
    */
-  public void setId(Integer id) {
+  public final void setId(final Integer id) {
     this.id = id;
   }
 
@@ -60,7 +70,7 @@ public class Task implements Serializable {
    *
    * @return Devuelve el titulo de la tarea
    */
-  public String getTitle() {
+  public final String getTitle() {
     return title;
   }
 
@@ -69,7 +79,7 @@ public class Task implements Serializable {
    *
    * @param title El título de la tarea
    */
-  public void setTitle(String title) {
+  public final void setTitle(final String title) {
     this.title = title;
   }
 }

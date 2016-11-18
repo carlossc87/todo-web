@@ -25,9 +25,19 @@ import java.io.Serializable;
  */
 public class TaskDto implements Serializable {
 
+  /**
+   * Version de la clase a serializar.
+   */
   static final long serialVersionUID = 1L;
   
+  /**
+   * Identificador de la tarea.
+   */
   private Integer id;
+  
+  /**
+   * Título de la tarea.
+   */
   private String title;
 
   /**
@@ -35,7 +45,7 @@ public class TaskDto implements Serializable {
    *
    * @return Devuelve el identificador de la tarea
    */
-  public Integer getId() {
+  public final Integer getId() {
     return id;
   }
 
@@ -44,7 +54,7 @@ public class TaskDto implements Serializable {
    *
    * @param id El identificador de la tarea
    */
-  public void setId(Integer id) {
+  public final void setId(final Integer id) {
     this.id = id;
   }
 
@@ -53,7 +63,7 @@ public class TaskDto implements Serializable {
    *
    * @return Devuelve el titulo de la tarea
    */
-  public String getTitle() {
+  public final String getTitle() {
     return title;
   }
 
@@ -62,7 +72,7 @@ public class TaskDto implements Serializable {
    *
    * @param title El título de la tarea
    */
-  public void setTitle(String title) {
+  public final void setTitle(final String title) {
     this.title = title;
   }
 }

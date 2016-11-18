@@ -34,9 +34,10 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class WebInitializer implements WebApplicationInitializer {
 
   @Override
-  public void onStartup(ServletContext servletContext)
+  final public void onStartup(final ServletContext servletContext)
           throws ServletException {
-    WebApplicationContext springContext = setupSpringContext(servletContext);
+    final WebApplicationContext springContext
+            = setupSpringContext(servletContext);
     setupHtmlEscape(servletContext);
     setupEncoding(servletContext);
     setupSpringServlet(springContext, servletContext);
@@ -49,8 +50,8 @@ public class WebInitializer implements WebApplicationInitializer {
    * @return Devuelve el contexto de Spring
    */
   private WebApplicationContext setupSpringContext(
-          ServletContext servletContext) {
-    AnnotationConfigWebApplicationContext springContext
+          final ServletContext servletContext) {
+    final AnnotationConfigWebApplicationContext springContext
             = new AnnotationConfigWebApplicationContext();
     springContext.register(AppConfig.class);
     springContext.setServletContext(servletContext);
@@ -62,7 +63,7 @@ public class WebInitializer implements WebApplicationInitializer {
    *
    * @param servletContext Contexto de los servlets
    */
-  private void setupHtmlEscape(ServletContext servletContext) {
+  private void setupHtmlEscape(final ServletContext servletContext) {
     servletContext.setInitParameter("defaultHtmlEscape",
             Boolean.toString(false));
   }
@@ -72,8 +73,8 @@ public class WebInitializer implements WebApplicationInitializer {
    *
    * @param servletContext Contexto de los servlets
    */
-  private void setupEncoding(ServletContext servletContext) {
-    CharacterEncodingFilter filter = new CharacterEncodingFilter();
+  private void setupEncoding(final ServletContext servletContext) {
+    final CharacterEncodingFilter filter = new CharacterEncodingFilter();
     filter.setEncoding(StandardCharsets.UTF_8.displayName());
     filter.setForceEncoding(true);
     servletContext
@@ -87,13 +88,13 @@ public class WebInitializer implements WebApplicationInitializer {
    * @param springContext Contexto de Spring
    * @param servletContext Contexto de los servlets
    */
-  private void setupSpringServlet(WebApplicationContext springContext,
-          ServletContext servletContext) {
-    DispatcherServlet dispatcherServletSpring
+  private void setupSpringServlet(final WebApplicationContext springContext,
+          final ServletContext servletContext) {
+    final DispatcherServlet dispatcherServletSpring
             = new DispatcherServlet(springContext);
     dispatcherServletSpring.
             setThrowExceptionIfNoHandlerFound(true);
-    ServletRegistration.Dynamic servlet = servletContext.addServlet(
+    final ServletRegistration.Dynamic servlet = servletContext.addServlet(
             dispatcherServletSpring.getClass().getSimpleName(),
             dispatcherServletSpring);
     servlet.addMapping("/");

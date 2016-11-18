@@ -32,8 +32,8 @@ public interface TaskMapper {
   /**
    * Mapea un objeto Task a TaskDto.
    * 
-   * @param task El objeto de la clase Task a mapear.
-   * @return El objeto de la clase TaskDto mapeada.
+   * @param task El objeto de la clase Task a mapear
+   * @return El objeto de la clase TaskDto mapeada
    */
   TaskDto taskToTaskDto(Task task);
   
@@ -41,15 +41,15 @@ public interface TaskMapper {
    * Mapea un lista de Task a una lista de TaskDto.
    * 
    * @param task La lista de la clase Task a mapear
-   * @return Lista de la clase TaskDto resultante mapeada.
+   * @return Lista de la clase TaskDto resultante mapeada
    */
   List<TaskDto> tasksToTaskDtos(List<Task> task);
 
   /**
-   * Mapea un objeto TaskDto a Task
+   * Mapea un objeto TaskDto a Task.
    * 
-   * @param taskDto El objeto de la clase TaskDto a mapear.
-   * @return El objeto de la clase Task mapeada.
+   * @param taskDto El objeto de la clase TaskDto a mapear
+   * @return El objeto de la clase Task mapeada
    */
   Task taskDtoToTask(TaskDto taskDto);
 }

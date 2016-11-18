@@ -38,6 +38,9 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class ExceptionsController {
 
+  /**
+   * Logger de la clase.
+   */
   private static final Logger LOG = LoggerFactory.getLogger(ExceptionsController.class);
 
   /**
@@ -46,16 +49,18 @@ public class ExceptionsController {
    * @param request Petición que produce que se lance la excepción
    * @return Muestra una página de error
    */
-  @ExceptionHandler(value = {NoHandlerFoundException.class, MissingServletRequestParameterException.class})
+  @ExceptionHandler(value = {NoHandlerFoundException.class,
+    MissingServletRequestParameterException.class})
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
-  public ModelAndView handleNotFoundException(HttpServletRequest request) {
+  public final ModelAndView handleNotFoundException(
+          final HttpServletRequest request) {
     LOG.debug("Error por no encontrar una página o recurso.");
 
     // Escribimos una alerta en el log
     LOG.warn("Page not found: " + request.getRequestURI());
 
     // Mostramos una página con el error
-    Map<String, Object> model = new HashMap<>();
+    final Map<String, Object> model = new HashMap<>();
     model.put("uri", request.getRequestURI());
     return new ModelAndView("exceptions/notfound", model);
   }
@@ -69,13 +74,14 @@ public class ExceptionsController {
    */
   @ExceptionHandler(Exception.class)
   @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-  public ModelAndView handleError(HttpServletRequest request, Exception exception) {
+  public final ModelAndView handleError(final HttpServletRequest request,
+          final Exception exception) {
     LOG.debug("Error no esperado.");
 
-    StringBuilder sbError = new StringBuilder();
+    final StringBuilder sbError = new StringBuilder();
 
     // Generamos el identificador del error
-    UUID idError = UUID.randomUUID();
+    final UUID idError = UUID.randomUUID();
 
     // Contruimos el mensaje de error
     sbError.append("ERROR ID: ");
@@ -87,7 +93,7 @@ public class ExceptionsController {
     LOG.error(sbError.toString(), exception);
 
     // Mostramos una página con el error
-    Map<String, Object> model = new HashMap<>();
+    final Map<String, Object> model = new HashMap<>();
     model.put("error", idError.toString());
     return new ModelAndView("exceptions/error", model);
   }

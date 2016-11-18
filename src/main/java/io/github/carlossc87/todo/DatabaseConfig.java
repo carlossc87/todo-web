@@ -33,7 +33,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Configuración de la base de datos.
- * 
+ *
  * @author Carlos Serramito Calvo
  */
 @Configuration
@@ -49,8 +49,8 @@ public class DatabaseConfig {
    * @return Devuelve el datasource
    */
   @Bean(name = "dataSource")
-  public DataSource setupDataSource(
-          @Value("${database.jndi}") String nameJndi) {
+  public final DataSource setupDataSource(
+          final @Value("${database.jndi}") String nameJndi) {
     final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
     dsLookup.setResourceRef(true);
     return dsLookup.getDataSource(nameJndi);
@@ -65,10 +65,10 @@ public class DatabaseConfig {
    * @return Devuelve el adaptador
    */
   @Bean(name = "jpaVendorAdapter")
-  public JpaVendorAdapter setupJpaVendorAdapter(
-          @Value("${hibernate.dialect}") String dialect,
-          @Value("${hibernate.showsql}") boolean showsql,
-          @Value("${hibernate.ddl}") boolean ddl) {
+  public final JpaVendorAdapter setupJpaVendorAdapter(
+          final @Value("${hibernate.dialect}") String dialect,
+          final @Value("${hibernate.showsql}") boolean showsql,
+          final @Value("${hibernate.ddl}") boolean ddl) {
     HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
     adapter.setDatabasePlatform(dialect);
     adapter.setShowSql(showsql);
@@ -85,11 +85,12 @@ public class DatabaseConfig {
    * @return Devuelve la factoria
    */
   @Bean(name = "entityManagerFactory")
-  public EntityManagerFactory setupEntityManagerFactoryBean(
-          @Value("${app.name}") String name,
-          DataSource dataSource,
-          JpaVendorAdapter adapter) {
-    LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
+  public final EntityManagerFactory setupEntityManagerFactoryBean(
+          final @Value("${app.name}") String name,
+          final DataSource dataSource,
+          final JpaVendorAdapter adapter) {
+    LocalContainerEntityManagerFactoryBean bean
+            = new LocalContainerEntityManagerFactoryBean();
     bean.setPersistenceUnitName(name);
     bean.setDataSource(dataSource);
     bean.setJpaVendorAdapter(adapter);
@@ -105,7 +106,8 @@ public class DatabaseConfig {
    * @return Devuelve el manejador
    */
   @Bean(name = "transactionManager")
-  public PlatformTransactionManager setupTransactionManager(EntityManagerFactory entityManagerFactory) {
+  public final PlatformTransactionManager setupTransactionManager(
+          final EntityManagerFactory entityManagerFactory) {
     JpaTransactionManager manager = new JpaTransactionManager();
     manager.setEntityManagerFactory(entityManagerFactory);
     return manager;

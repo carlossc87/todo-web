@@ -29,8 +29,15 @@ import org.springframework.validation.Validator;
  */
 public class TaskValidator implements Validator {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TaskValidator.class);
+  /**
+   * Logger de la clase.
+   */
+  private static final Logger LOG
+          = LoggerFactory.getLogger(TaskValidator.class);
 
+  /**
+   * Tamaño máximo del título.
+   */
   private static final int MAX_SIZE_TITLE = 10;
 
   /**
@@ -40,7 +47,7 @@ public class TaskValidator implements Validator {
    * @return Devuelve true si la clase es una tarea o false de lo contrario
    */
   @Override
-  public boolean supports(Class<?> type) {
+  public final boolean supports(final Class<?> type) {
     return TaskModel.class.equals(type);
   }
 
@@ -51,19 +58,20 @@ public class TaskValidator implements Validator {
    * @param errors La lista de errores que se detecten
    */
   @Override
-  public void validate(Object o, Errors errors) {
+  public final void validate(final Object o, final Errors errors) {
     LOG.debug("Validar una tarea.");
-    TaskModel todo = (TaskModel) o;
-    boolean hasTitle = true;
+    final TaskModel todo = (TaskModel) o;
+    final boolean hasTitle = !(todo.getTitle() == null
+            || todo.getTitle().trim().isEmpty());
 
     LOG.debug("Comprobando si se pasa un título.");
-    if (todo.getTitle() == null || todo.getTitle().trim().isEmpty()) {
+    if (!hasTitle) {
       errors.rejectValue("title", "validators.task.title.requerido");
-      hasTitle = false;
     }
 
+    final boolean maxSizeTitle = todo.getTitle().length() < MAX_SIZE_TITLE;
     LOG.debug("Comprobando si el título es mayor de del limite.");
-    if (hasTitle && todo.getTitle().length() < MAX_SIZE_TITLE) {
+    if (hasTitle && maxSizeTitle) {
       errors.rejectValue("title", "validators.task.title.min10");
     }
   }

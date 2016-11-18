@@ -43,16 +43,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = {"/", "tasks"})
 public class TasksController {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TasksController.class);
+  /**
+   * Logger de la clase.
+   */
+  private static final Logger LOG
+          = LoggerFactory.getLogger(TasksController.class);
 
+  /**
+   * Prefijo para rederigir a unha vista.
+   */
   private static final String REDIRECT = "redirect:/";
+
+  /**
+   * Vista para mostrar la lista de tareas.
+   */
   private static final String TASKS_INDEX = "tasks/index";
+
+  /**
+   * Vista para añadir una tarea.
+   */
   private static final String TASKS_ADD = "tasks/add";
+
+  /**
+   * Vista para editar una tarea.
+   */
   private static final String TASKS_EDIT = "tasks/edit";
 
+  /**
+   * Servicios de las tareas.
+   */
   @Autowired
   private TasksService tasksService;
 
+  /**
+   * Mapeador de la clase TaskModel.
+   */
   @Autowired
   private TaskModelMapper taskModelMapper;
 
@@ -62,7 +87,7 @@ public class TasksController {
    * @param binder El binder
    */
   @InitBinder
-  protected void initBinder(WebDataBinder binder) {
+  protected final void initBinder(final WebDataBinder binder) {
     binder.addValidators(new TaskValidator());
   }
 
@@ -74,9 +99,11 @@ public class TasksController {
    * @return Devuelve la vista de las listas
    */
   @RequestMapping(value = {"", "index"})
-  public String index(Model model, Locale locale) {
+  public final String index(final Model model, final Locale locale) {
     LOG.error("Mostrar todas las tareas.");
-    List<TaskModel> taskModels = taskModelMapper.taskDtosToTaskModels(tasksService.list());
+    final List<TaskDto> taskDtos = tasksService.list();
+    final List<TaskModel> taskModels
+            = taskModelMapper.taskDtosToTaskModels(taskDtos);
     model.addAttribute("tasks", taskModels);
     return TASKS_INDEX;
   }
@@ -102,13 +129,14 @@ public class TasksController {
    * @return Se redirige a la lista de tareas
    */
   @RequestMapping("saveadd")
-  public String saveadd(@Valid TaskModel taskModel, BindingResult result) {
+  public final String saveadd(@Valid final TaskModel taskModel,
+          final BindingResult result) {
     LOG.debug("Guardar los cambios de una tarea nueva o existente.");
     if (result.hasErrors()) {
       return TASKS_ADD;
     }
 
-    TaskDto taskDto = taskModelMapper.taskModelToTaskDto(taskModel);
+    final TaskDto taskDto = taskModelMapper.taskModelToTaskDto(taskModel);
     tasksService.save(taskDto);
     return REDIRECT + TASKS_INDEX;
   }
@@ -121,9 +149,11 @@ public class TasksController {
    * @return Se muestra el formulario
    */
   @RequestMapping("edit")
-  public String edit(Integer id, Model model) {
+  public final String edit(final Integer id, final Model model) {
     LOG.debug("Mostrar el formulario para editar una tarea.");
-    model.addAttribute("task", tasksService.find(id));
+    final TaskDto taskDto = tasksService.find(id);
+    final TaskModel taskModel = taskModelMapper.taskDtoToTaskModel(taskDto);
+    model.addAttribute("task", taskModel);
     return TASKS_EDIT;
   }
 
@@ -135,13 +165,14 @@ public class TasksController {
    * @return Se redirige a la lista de tareas
    */
   @RequestMapping("saveedit")
-  public String saveedit(@Valid TaskModel taskModel, BindingResult result) {
+  public final String saveedit(@Valid final TaskModel taskModel,
+          final BindingResult result) {
     LOG.debug("Guardar los cambios de una tarea nueva o existente.");
     if (result.hasErrors()) {
       return TASKS_EDIT;
     }
 
-    TaskDto taskDto = taskModelMapper.taskModelToTaskDto(taskModel);
+    final TaskDto taskDto = taskModelMapper.taskModelToTaskDto(taskModel);
     tasksService.save(taskDto);
     return REDIRECT + TASKS_INDEX;
   }
@@ -153,7 +184,7 @@ public class TasksController {
    * @return Se redirige a la lista de tareas
    */
   @RequestMapping("delete")
-  public String delete(Integer id) {
+  public final String delete(final Integer id) {
     LOG.debug("Eliminar una tarea.");
     tasksService.delete(id);
     return REDIRECT + TASKS_INDEX;

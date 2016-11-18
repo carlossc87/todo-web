@@ -42,12 +42,13 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
   @Override
-  public void addInterceptors(InterceptorRegistry registry) {
+  public final void addInterceptors(final InterceptorRegistry registry) {
     registry.addInterceptor(setupLocaleChangeInterceptor());
   }
 
   @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+  public final void addResourceHandlers(
+          final ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/assets/**")
             .addResourceLocations("/assets/");
     registry.addResourceHandler("/webjars/**")
@@ -60,8 +61,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve el interceptor para el idioma
    */
   @Bean(name = "localeInterceptor")
-  public LocaleChangeInterceptor setupLocaleChangeInterceptor() {
-    LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+  public final LocaleChangeInterceptor setupLocaleChangeInterceptor() {
+    final LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
     interceptor.setParamName("lang");
     return interceptor;
   }
@@ -72,9 +73,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve el resolvedor de los locale
    */
   @Bean(name = "localeResolver")
-  public SessionLocaleResolver setupSessionLocaleResolver() {
-    SessionLocaleResolver resolver = new SessionLocaleResolver();
-    Locale locale = new Locale("es", "ES");
+  public final SessionLocaleResolver setupSessionLocaleResolver() {
+    final SessionLocaleResolver resolver = new SessionLocaleResolver();
+    final Locale locale = new Locale("es", "ES");
     resolver.setDefaultLocale(locale);
     return resolver;
   }
@@ -85,8 +86,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve la fuente de los mensajes
    */
   @Bean(name = "messageSource")
-  public AbstractMessageSource setupReloadableResourceBundleMessageSource() {
-    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+  public final AbstractMessageSource setupReloadableResourceBundleMessageSource() {
+    final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
     messageSource.setBasenames("messages");
     return messageSource;
   }
@@ -97,8 +98,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve el resolvedor
    */
   @Bean(name = "viewResolver")
-  public ViewResolver setupViewResolver() {
-    UrlBasedViewResolver resolver = new InternalResourceViewResolver();
+  public final ViewResolver setupViewResolver() {
+    final UrlBasedViewResolver resolver = new InternalResourceViewResolver();
     resolver.setViewClass(JstlView.class);
     resolver.setPrefix("/WEB-INF/jsp/");
     resolver.setSuffix(".jspx");
