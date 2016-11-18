@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2014 - 2016</copyright>
     <item>
       <title>File: 18,
-             Errors: 267,
+             Errors: 149,
              Warnings: 0,
              Infos: 0
       </title>
@@ -55,7 +55,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  6
                 </td>
               </tr>
                           <tr>
@@ -69,7 +69,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  22
+                  9
                 </td>
               </tr>
                           <tr>
@@ -83,7 +83,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  10
+                  4
                 </td>
               </tr>
                           <tr>
@@ -97,7 +97,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  17
+                  11
                 </td>
               </tr>
                           <tr>
@@ -111,7 +111,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  19
+                  12
                 </td>
               </tr>
                           <tr>
@@ -139,7 +139,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  1
                 </td>
               </tr>
                           <tr>
@@ -167,7 +167,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  21
+                  12
                 </td>
               </tr>
                           <tr>
@@ -181,7 +181,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  3
                 </td>
               </tr>
                           <tr>
@@ -209,7 +209,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  60
+                  27
                 </td>
               </tr>
                           <tr>
@@ -223,7 +223,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  18
+                  10
                 </td>
               </tr>
                           <tr>
@@ -242,20 +242,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.DatabaseConfig.java">io/github/carlossc87/todo/DatabaseConfig.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  31
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.TasksService.java">io/github/carlossc87/todo/app/services/TasksService.java</a>
                 </td>
                 <td>
@@ -265,7 +251,21 @@ under the License.
                   0
                 </td>
                 <td>
-                  17
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.DatabaseConfig.java">io/github/carlossc87/todo/DatabaseConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
                 </td>
               </tr>
                           <tr>
@@ -279,7 +279,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  9
+                  8
                 </td>
               </tr>
                           <tr>
@@ -293,7 +293,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  21
+                  11
                 </td>
               </tr>
                       </tbody>
