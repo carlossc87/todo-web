@@ -50,7 +50,7 @@ public class DatabaseConfig {
    */
   @Bean(name = "dataSource")
   public final DataSource setupDataSource(
-          final @Value("${database.jndi}") String nameJndi) {
+          @Value("${database.jndi}") final String nameJndi) {
     final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
     dsLookup.setResourceRef(true);
     return dsLookup.getDataSource(nameJndi);
@@ -66,9 +66,9 @@ public class DatabaseConfig {
    */
   @Bean(name = "jpaVendorAdapter")
   public final JpaVendorAdapter setupJpaVendorAdapter(
-          final @Value("${hibernate.dialect}") String dialect,
-          final @Value("${hibernate.showsql}") boolean showsql,
-          final @Value("${hibernate.ddl}") boolean ddl) {
+          @Value("${hibernate.dialect}") final String dialect,
+          @Value("${hibernate.showsql}") final boolean showsql,
+          @Value("${hibernate.ddl}") final boolean ddl) {
     HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
     adapter.setDatabasePlatform(dialect);
     adapter.setShowSql(showsql);
@@ -86,7 +86,7 @@ public class DatabaseConfig {
    */
   @Bean(name = "entityManagerFactory")
   public final EntityManagerFactory setupEntityManagerFactoryBean(
-          final @Value("${app.name}") String name,
+          @Value("${app.name}") final String name,
           final DataSource dataSource,
           final JpaVendorAdapter adapter) {
     LocalContainerEntityManagerFactoryBean bean

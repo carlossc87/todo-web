@@ -34,7 +34,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class WebInitializer implements WebApplicationInitializer {
 
   @Override
-  final public void onStartup(final ServletContext servletContext)
+  public final void onStartup(final ServletContext servletContext)
           throws ServletException {
     final WebApplicationContext springContext
             = setupSpringContext(servletContext);

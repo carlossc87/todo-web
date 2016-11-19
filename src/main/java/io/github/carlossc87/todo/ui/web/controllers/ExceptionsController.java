@@ -41,7 +41,8 @@ public class ExceptionsController {
   /**
    * Logger de la clase.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(ExceptionsController.class);
+  private static final Logger LOG
+          = LoggerFactory.getLogger(ExceptionsController.class);
 
   /**
    * Captura las excepciones cuando no se encuentra una página.

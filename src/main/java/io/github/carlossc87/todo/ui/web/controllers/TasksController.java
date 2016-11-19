@@ -115,7 +115,7 @@ public class TasksController {
    * @return Devuelve la vista del formularios
    */
   @RequestMapping("add")
-  public String add(Model model) {
+  public final String add(final Model model) {
     LOG.debug("Mostrar el formulario para añadir una tarea.");
     model.addAttribute("task", new TaskModel());
     return TASKS_ADD;

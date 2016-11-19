@@ -86,8 +86,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve la fuente de los mensajes
    */
   @Bean(name = "messageSource")
-  public final AbstractMessageSource setupReloadableResourceBundleMessageSource() {
-    final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+  public final AbstractMessageSource
+          setupReloadableResourceBundleMessageSource() {
+    final ResourceBundleMessageSource messageSource
+            = new ResourceBundleMessageSource();
     messageSource.setBasenames("messages");
     return messageSource;
   }
