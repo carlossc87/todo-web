@@ -55,11 +55,11 @@
 
   <scm>
     <url>https://github.com/carlossc87/todo-web</url>
-    <connection>scm:git:git://github.com/carlossc87/todo-web.git</connection>
-    <developerConnection>scm:git:git://github.com/carlossc87/todo-web.git</developerConnection>
+    <connection>scm:git:http://github.com/carlossc87/todo-web.git</connection>
+    <developerConnection>scm:git:http://github.com/carlossc87/todo-web.git</developerConnection>
     <tag>master</tag>
   </scm>
-
+  
   <ciManagement>
     <system>Travis</system>
     <url>https://travis-ci.org/carlossc87/todo-web</url>
@@ -69,6 +69,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>4.3.3.RELEASE</spring.version>
     <org.mapstruct.version>1.1.0.CR2</org.mapstruct.version>
+    
+    <plugin.scm-publish.version>1.0</plugin.scm-publish.version>
+    
   </properties>
 
   <dependencies>    
@@ -220,17 +223,19 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <version>0.12</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <version>${plugin.scm-publish.version}</version>
+        <inherited>true</inherited>
         <configuration>
-          <message>Sitio para la versión ${project.version}</message>
-          <server>github</server>
+          <content>${project.reporting.outputDirectory}</content>
+          <pubScmUrl>${project.scm.connection}</pubScmUrl>
+          <scmBranch>gh-pages</scmBranch>
         </configuration>
         <executions>
           <execution>
             <goals>
-              <goal>site</goal>
+              <goal>publish-scm</goal>
             </goals>
             <phase>site</phase>
           </execution>
@@ -244,15 +249,14 @@
           <generateSitemap>true</generateSitemap>
           <locales>en</locales>
           <outputEncoding>UTF-8</outputEncoding>
-          <skipDeploy>true</skipDeploy>
           <reportPlugins>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-project-info-reports-plugin</artifactId>
               <version>2.9</version>
               <configuration>
-                <dependencyDetailsEnabled>true</dependencyDetailsEnabled>
-                <dependencyLocationsEnabled>true</dependencyLocationsEnabled>
+                <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
               </configuration>
             </plugin>
             <plugin>
@@ -273,6 +277,7 @@
           </reportPlugins>
         </configuration>
       </plugin>
+      
     </plugins>
     <resources>
       <resource>
