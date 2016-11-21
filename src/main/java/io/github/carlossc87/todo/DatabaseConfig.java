@@ -33,6 +33,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Configuración de la base de datos.
+ *
  * @author Carlos Serramito Calvo
  */
 @Configuration
@@ -43,6 +44,7 @@ public class DatabaseConfig {
 
   /**
    * Configura el datasource a la base de datos.
+   *
    * @param nameJndi Nombre del datasource
    * @return Devuelve el datasource
    */
@@ -56,6 +58,7 @@ public class DatabaseConfig {
 
   /**
    * Configura el adaptador de JPA.
+   *
    * @param dialect El dialecto para comunicarse con la base de datos
    * @param showsql Indica si muestra las sentencias sql
    * @param ddl Indica si crea la estructura de la base de datos si es necesario
@@ -75,6 +78,7 @@ public class DatabaseConfig {
 
   /**
    * Configura la factoria de los manejadores de entidad.
+   *
    * @param name Nombre de la unidad de persistencia.
    * @param dataSource El datasource
    * @param adapter El adaptador
@@ -97,6 +101,7 @@ public class DatabaseConfig {
 
   /**
    * Configura el manejador de las transacciones.
+   *
    * @param entityManagerFactory La factoria del manejador de entidades
    * @return Devuelve el manejador
    */

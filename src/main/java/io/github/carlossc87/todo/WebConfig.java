@@ -36,6 +36,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
  * Configuración del MVC de Spring.
+ *
  * @author Carlos Serramito Calvo
  */
 @Configuration
@@ -58,6 +59,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
   /**
    * Configura un interceptor para capturar el idioma de la página.
+   *
    * @return Devuelve el interceptor para el idioma
    */
   @Bean(name = "localeInterceptor")
@@ -69,6 +71,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
   /**
    * Configura el resolvedor de los locale.
+   *
    * @return Devuelve el resolvedor de los locale
    */
   @Bean(name = "localeResolver")
@@ -81,6 +84,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
   /**
    * Configura la fuente de los mensajes.
+   *
    * @return Devuelve la fuente de los mensajes
    */
   @Bean(name = "messageSource")
@@ -94,6 +98,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
   /**
    * Configura el resolvedor de las vistas.
+   *
    * @return Devuelve el resolvedor
    */
   @Bean(name = "viewResolver")

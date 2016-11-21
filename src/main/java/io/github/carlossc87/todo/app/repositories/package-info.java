@@ -18,6 +18,7 @@
 /**
  * Contiene todas las interface que serán implementadas automáticamente por
  * Spring Data.
+ *
  * @author Carlos Serramito Calvo
  */
 package io.github.carlossc87.todo.app.repositories;

@@ -17,6 +17,7 @@
 
 /**
  * Contiene todas las clases del dominio como entidades, manajadores y eventos.
+ *
  * @author Carlos Serramito Calvo
  */
 package io.github.carlossc87.todo.app.domain;

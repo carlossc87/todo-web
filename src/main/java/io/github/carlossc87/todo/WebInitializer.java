@@ -29,6 +29,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * Configurador de los servlet de la aplicación programaticamente.
+ *
  * @author Carlos Serramito Calvo
  */
 public class WebInitializer implements WebApplicationInitializer {
@@ -45,6 +46,7 @@ public class WebInitializer implements WebApplicationInitializer {
 
   /**
    * Configuramos el contexto de Spring para la aplicación web.
+   *
    * @param servletContext Contexto de los servlets
    * @return Devuelve el contexto de Spring
    */
@@ -59,6 +61,7 @@ public class WebInitializer implements WebApplicationInitializer {
 
   /**
    * Configura si se escapa o no el código html desde los tag de Spring MVC.
+   *
    * @param servletContext Contexto de los servlets
    */
   private void setupHtmlEscape(final ServletContext servletContext) {
@@ -68,6 +71,7 @@ public class WebInitializer implements WebApplicationInitializer {
 
   /**
    * Configura la codificación de entrada y salida de los servlets.
+   *
    * @param servletContext Contexto de los servlets
    */
   private void setupEncoding(final ServletContext servletContext) {
@@ -81,6 +85,7 @@ public class WebInitializer implements WebApplicationInitializer {
 
   /**
    * Configura el servlet para Spring.
+   *
    * @param springContext Contexto de Spring
    * @param servletContext Contexto de los servlets
    */

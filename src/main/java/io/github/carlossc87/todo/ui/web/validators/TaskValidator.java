@@ -24,6 +24,7 @@ import org.springframework.validation.Validator;
 
 /**
  * El validador para la tarea.
+ *
  * @author Carlos Serramito Calvo
  */
 public class TaskValidator implements Validator {
@@ -41,6 +42,7 @@ public class TaskValidator implements Validator {
 
   /**
    * Comprueba si la clase es de tipo tarea.
+   *
    * @param type El tipo de la clase
    * @return Devuelve true si la clase es una tarea o false de lo contrario
    */
@@ -51,6 +53,7 @@ public class TaskValidator implements Validator {
 
   /**
    * Valida una tarea.
+   *
    * @param o La clase a validar
    * @param errors La lista de errores que se detecten
    */

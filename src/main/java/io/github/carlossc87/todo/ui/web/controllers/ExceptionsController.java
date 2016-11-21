@@ -32,6 +32,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * Controlador de las excepciones globales (errores HTTP 404 y 505).
+ *
  * @author Carlos Serramito Calvo
  */
 @ControllerAdvice
@@ -45,6 +46,7 @@ public class ExceptionsController {
 
   /**
    * Captura las excepciones cuando no se encuentra una página.
+   *
    * @param request Petición que produce que se lance la excepción
    * @return Muestra una página de error
    */
@@ -66,6 +68,7 @@ public class ExceptionsController {
 
   /**
    * Captura las excepciones que se producen en la aplicación y no son tratadas.
+   *
    * @param request Petición que produce que se lance la excepción
    * @param exception La excepción que se produce
    * @return Muestra una página de eroor
