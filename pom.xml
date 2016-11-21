@@ -69,9 +69,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>4.3.3.RELEASE</spring.version>
     <org.mapstruct.version>1.1.0.CR2</org.mapstruct.version>
-    
-    <plugin.scm-publish.version>1.0</plugin.scm-publish.version>
-    
   </properties>
 
   <dependencies>    
@@ -225,12 +222,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-scm-publish-plugin</artifactId>
-        <version>${plugin.scm-publish.version}</version>
-        <inherited>true</inherited>
+        <version>1.1</version>
         <configuration>
           <content>${project.reporting.outputDirectory}</content>
-          <pubScmUrl>${project.scm.connection}</pubScmUrl>
+          <pubScmUrl>${project.scm.developerConnection}</pubScmUrl>
           <scmBranch>gh-pages</scmBranch>
+          <serverId>github</serverId>
         </configuration>
         <executions>
           <execution>
@@ -277,7 +274,6 @@
           </reportPlugins>
         </configuration>
       </plugin>
-      
     </plugins>
     <resources>
       <resource>
