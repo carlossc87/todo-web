@@ -18,7 +18,6 @@
 /**
  * Contiene los mapeador desde los DTO de la aplicación a los modelos de la 
  * parte web.
- * 
  * @author Carlos Serramito Calvo
  */
 package io.github.carlossc87.todo.ui.web.mappers;

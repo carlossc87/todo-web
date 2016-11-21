@@ -24,7 +24,6 @@ import javax.persistence.Id;
 
 /**
  * La entidad para las tareas.
- *
  * @author Carlos Serramito Calvo
  */
 @Entity
@@ -49,7 +48,6 @@ public class Task implements Serializable {
 
   /**
    * Obtiene el identificador de la tarea.
-   *
    * @return Devuelve el identificador de la tarea
    */
   public final Integer getId() {
@@ -58,16 +56,14 @@ public class Task implements Serializable {
 
   /**
    * Establece el identificador de la tarea.
-   *
-   * @param id El identificador de la tarea
+   * @param _id El identificador de la tarea
    */
-  public final void setId(final Integer id) {
-    this.id = id;
+  public final void setId(final Integer _id) {
+    id = _id;
   }
 
   /**
    * Obtiene el título de la tarea.
-   *
    * @return Devuelve el titulo de la tarea
    */
   public final String getTitle() {
@@ -76,10 +72,9 @@ public class Task implements Serializable {
 
   /**
    * Establece el título de la tarea.
-   *
-   * @param title El título de la tarea
+   * @param _title El título de la tarea
    */
-  public final void setTitle(final String title) {
-    this.title = title;
+  public final void setTitle(final String _title) {
+    title = title;
   }
 }

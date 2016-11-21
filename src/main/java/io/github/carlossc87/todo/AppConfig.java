@@ -25,7 +25,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * Configuración de la aplicación.
- *
  * @author Carlos Serramito Calvo
  */
 @Configuration
@@ -36,12 +35,11 @@ public class AppConfig {
 
   /**
    * Genera el configurador para el acceso a los archivos de propiedades.
-   *
    * @return Devuelve el configurador para el acceso a las propiedades
    */
   @Bean(name = "PropertySourcesPlaceholderConfigurer")
-  public final PropertySourcesPlaceholderConfigurer 
-        setupPropertySourcesPlaceholderConfigurer() {
+  public final PropertySourcesPlaceholderConfigurer
+          setupPropertySourcesPlaceholderConfigurer() {
     return new PropertySourcesPlaceholderConfigurer();
   }
 

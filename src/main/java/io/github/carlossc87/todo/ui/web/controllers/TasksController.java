@@ -36,7 +36,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Controlador de las tareas.
- *
  * @author Carlos Serramito Calvo
  */
 @Controller
@@ -83,7 +82,6 @@ public class TasksController {
 
   /**
    * Añade los validadores de las entidades.
-   *
    * @param binder El binder
    */
   @InitBinder
@@ -93,7 +91,6 @@ public class TasksController {
 
   /**
    * Lista las tareas.
-   *
    * @param model El modelo de datos recivido de la vista y devuelto a la vista
    * @param locale El idioma del cliente
    * @return Devuelve la vista de las listas
@@ -110,7 +107,6 @@ public class TasksController {
 
   /**
    * Muestra el formulario para añadir una nueva tarea.
-   *
    * @param model El modelo de datos recivido de la vista y devuelto a la vista
    * @return Devuelve la vista del formularios
    */
@@ -123,7 +119,6 @@ public class TasksController {
 
   /**
    * Guarda una tarea nueva.
-   *
    * @param taskModel La tarea con los cambios
    * @param result El resultado del validador
    * @return Se redirige a la lista de tareas
@@ -143,7 +138,6 @@ public class TasksController {
 
   /**
    * Muestra un formulario para editar una tarea.
-   *
    * @param id El identificador de la tarea
    * @param model El modelo de datos recivido de la vista y devuelto a la vista
    * @return Se muestra el formulario
@@ -159,7 +153,6 @@ public class TasksController {
 
   /**
    * Guarda una tarea modificada.
-   *
    * @param taskModel La tarea con los cambios
    * @param result El resultado del validador
    * @return Se redirige a la lista de tareas
@@ -179,7 +172,6 @@ public class TasksController {
 
   /**
    * Elimina una tarea.
-   *
    * @param id El identificador de la tarea.
    * @return Se redirige a la lista de tareas
    */

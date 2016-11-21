@@ -23,7 +23,6 @@ import org.mapstruct.Mapper;
 
 /**
  * Mapea objetos de la clase Task a otras clases.
- * 
  * @author Carlos Serramito Calvo
  */
 @Mapper(componentModel = "spring")
@@ -31,7 +30,6 @@ public interface TaskMapper {
 
   /**
    * Mapea un objeto Task a TaskDto.
-   * 
    * @param task El objeto de la clase Task a mapear
    * @return El objeto de la clase TaskDto mapeada
    */
@@ -39,7 +37,6 @@ public interface TaskMapper {
   
   /**
    * Mapea un lista de Task a una lista de TaskDto.
-   * 
    * @param task La lista de la clase Task a mapear
    * @return Lista de la clase TaskDto resultante mapeada
    */
@@ -47,7 +44,6 @@ public interface TaskMapper {
 
   /**
    * Mapea un objeto TaskDto a Task.
-   * 
    * @param taskDto El objeto de la clase TaskDto a mapear
    * @return El objeto de la clase Task mapeada
    */

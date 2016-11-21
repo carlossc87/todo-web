@@ -17,7 +17,6 @@
 
 /**
  * Contiene todas los modelos de la parte web.
- * 
  * @author Carlos Serramito Calvo
  */
 package io.github.carlossc87.todo.ui.web.models;
