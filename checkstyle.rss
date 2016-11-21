@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2014 - 2016</copyright>
     <item>
       <title>File: 28,
-             Errors: 44,
+             Errors: 19,
              Warnings: 0,
              Infos: 0
       </title>
@@ -55,7 +55,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -69,7 +69,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -83,7 +83,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  2
                 </td>
               </tr>
                           <tr>
@@ -97,7 +97,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  1
                 </td>
               </tr>
                           <tr>
@@ -125,7 +125,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -153,7 +153,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -181,7 +181,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -237,7 +237,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -279,7 +279,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  1
                 </td>
               </tr>
                           <tr>
@@ -293,7 +293,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -307,7 +307,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -335,7 +335,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  1
                 </td>
               </tr>
                           <tr>
@@ -368,7 +368,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.TasksService.java">io/github/carlossc87/todo/app/services/TasksService.java</a>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.DatabaseConfig.java">io/github/carlossc87/todo/DatabaseConfig.java</a>
                 </td>
                 <td>
                   0
@@ -377,12 +377,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  0
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.DatabaseConfig.java">io/github/carlossc87/todo/DatabaseConfig.java</a>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.TasksService.java">io/github/carlossc87/todo/app/services/TasksService.java</a>
                 </td>
                 <td>
                   0
@@ -410,7 +410,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.package-info.java">io/github/carlossc87/todo/app/services/package-info.java</a>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.WebConfig.java">io/github/carlossc87/todo/WebConfig.java</a>
                 </td>
                 <td>
                   0
@@ -424,7 +424,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.WebConfig.java">io/github/carlossc87/todo/WebConfig.java</a>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.package-info.java">io/github/carlossc87/todo/app/services/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -433,7 +433,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  0
                 </td>
               </tr>
                       </tbody>
