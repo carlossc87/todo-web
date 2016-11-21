@@ -17,5 +17,5 @@ script:
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
       git config --global user.name "Carlos Serramito Calvo (Travis CI)";
       git config --global user.email "carlossc87@gmail.com";
-      mvn site --settings .travis/settings.xml;
+      mvn site --settings .travis/settings.xml | egrep -v "git push";
     fi
