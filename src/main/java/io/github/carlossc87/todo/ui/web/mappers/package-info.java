@@ -16,7 +16,7 @@
  */
 
 /**
- * Contiene los mapeador desde los DTO de la aplicación a los modelos de la 
+ * Contiene los mapeador desde los DTO de la aplicación a los modelos de la
  * parte web.
  * @author Carlos Serramito Calvo
  */
