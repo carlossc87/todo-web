@@ -15,5 +15,7 @@ install: mvn install --settings .travis/settings.xml -DskipTests=true -Dmaven.ja
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.login=$SONAR_TOKEN
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+      git config --global user.name "Carlos Serramito Calvo (Travis CI)";
+      git config --global user.email "carlossc87@gmail.com";
       mvn site --settings .travis/settings.xml;
     fi
