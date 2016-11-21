@@ -40,7 +40,7 @@ public class Task implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  
+
   /**
    * Título de la tarea.
    */
@@ -56,10 +56,10 @@ public class Task implements Serializable {
 
   /**
    * Establece el identificador de la tarea.
-   * @param _id El identificador de la tarea
+   * @param value El identificador de la tarea
    */
-  public final void setId(final Integer _id) {
-    id = _id;
+  public final void setId(final Integer value) {
+    this.id = value;
   }
 
   /**
@@ -72,9 +72,9 @@ public class Task implements Serializable {
 
   /**
    * Establece el título de la tarea.
-   * @param _title El título de la tarea
+   * @param value El título de la tarea
    */
-  public final void setTitle(final String _title) {
-    title = title;
+  public final void setTitle(final String value) {
+    this.title = value;
   }
 }

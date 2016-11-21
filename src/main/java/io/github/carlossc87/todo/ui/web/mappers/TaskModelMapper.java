@@ -34,14 +34,14 @@ public interface TaskModelMapper {
    * @return El objeto de la clase TaskModel mapeada
    */
   TaskModel taskDtoToTaskModel(TaskDto taskDto);
-  
+
   /**
    * Mapea un lista de TaskDto a una lista de TaskModel.
    * @param taskDtos La lista de la clase TaskDto a mapear
    * @return Lista de la clase TaskModel resultante mapeada
    */
   List<TaskModel> taskDtosToTaskModels(List<TaskDto> taskDtos);
-  
+
   /**
    * Mapea un objeto TaskModel a TaskDto.
    * @param taskModel El objeto de la clase TaskModel a mapear

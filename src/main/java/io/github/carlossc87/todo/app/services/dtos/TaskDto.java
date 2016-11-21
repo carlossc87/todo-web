@@ -28,12 +28,12 @@ public class TaskDto implements Serializable {
    * Version de la clase a serializar.
    */
   static final long serialVersionUID = 1L;
-  
+
   /**
    * Identificador de la tarea.
    */
   private Integer id;
-  
+
   /**
    * Título de la tarea.
    */
@@ -49,10 +49,10 @@ public class TaskDto implements Serializable {
 
   /**
    * Establece el identificador de la tarea.
-   * @param _id El identificador de la tarea
+   * @param value El identificador de la tarea
    */
-  public final void setId(final Integer _id) {
-    id = _id;
+  public final void setId(final Integer value) {
+    this.id = value;
   }
 
   /**
@@ -65,9 +65,9 @@ public class TaskDto implements Serializable {
 
   /**
    * Establece el título de la tarea.
-   * @param _title El título de la tarea
+   * @param value El título de la tarea
    */
-  public final void setTitle(final String _title) {
-    title = _title;
+  public final void setTitle(final String value) {
+    this.title = value;
   }
 }
