@@ -368,20 +368,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.TasksService.java">io/github/carlossc87/todo/app/services/TasksService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.DatabaseConfig.java">io/github/carlossc87/todo/DatabaseConfig.java</a>
                 </td>
                 <td>
@@ -396,7 +382,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.WebInitializer.java">io/github/carlossc87/todo/WebInitializer.java</a>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.TasksService.java">io/github/carlossc87/todo/app/services/TasksService.java</a>
                 </td>
                 <td>
                   0
@@ -405,12 +391,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  5
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.package-info.java">io/github/carlossc87/todo/app/services/package-info.java</a>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.WebInitializer.java">io/github/carlossc87/todo/WebInitializer.java</a>
                 </td>
                 <td>
                   0
@@ -434,6 +420,20 @@ under the License.
                 </td>
                 <td>
                   2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://carlossc87.github.io/todo-web//checkstyle.html#io.github.carlossc87.todo.app.services.package-info.java">io/github/carlossc87/todo/app/services/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
               </tr>
                       </tbody>
