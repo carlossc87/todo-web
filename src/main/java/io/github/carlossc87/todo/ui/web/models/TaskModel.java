@@ -17,6 +17,7 @@
 package io.github.carlossc87.todo.ui.web.models;
 
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * El modelo para las tareas.
@@ -45,7 +46,7 @@ public class TaskModel implements Serializable {
    *
    * @return Devuelve el identificador de la tarea
    */
-  public final Integer getId() {
+  public Integer getId() {
     return id;
   }
 
@@ -54,7 +55,7 @@ public class TaskModel implements Serializable {
    *
    * @param value El identificador de la tarea
    */
-  public final void setId(final Integer value) {
+  public void setId(final Integer value) {
     this.id = value;
   }
 
@@ -63,7 +64,7 @@ public class TaskModel implements Serializable {
    *
    * @return Devuelve el titulo de la tarea
    */
-  public final String getTitle() {
+  public String getTitle() {
     return title;
   }
 
@@ -72,7 +73,16 @@ public class TaskModel implements Serializable {
    *
    * @param value El título de la tarea
    */
-  public final void setTitle(final String value) {
+  public void setTitle(final String value) {
     this.title = value;
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this)
+            .appendSuper(super.toString())
+            .append("id", id)
+            .append("title", title)
+            .toString();
   }
 }

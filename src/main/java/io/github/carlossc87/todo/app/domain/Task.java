@@ -21,6 +21,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * La entidad para las tareas.
@@ -52,7 +55,7 @@ public class Task implements Serializable {
    *
    * @return Devuelve el identificador de la tarea
    */
-  public final Integer getId() {
+  public Integer getId() {
     return id;
   }
 
@@ -61,7 +64,7 @@ public class Task implements Serializable {
    *
    * @param value El identificador de la tarea
    */
-  public final void setId(final Integer value) {
+  public void setId(final Integer value) {
     this.id = value;
   }
 
@@ -70,7 +73,7 @@ public class Task implements Serializable {
    *
    * @return Devuelve el titulo de la tarea
    */
-  public final String getTitle() {
+  public String getTitle() {
     return title;
   }
 
@@ -79,7 +82,35 @@ public class Task implements Serializable {
    *
    * @param value El título de la tarea
    */
-  public final void setTitle(final String value) {
+  public void setTitle(final String value) {
     this.title = value;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Task) {
+      final Task other = (Task) obj;
+      return new EqualsBuilder()
+              .append(id, other.id)
+              .isEquals();
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder()
+            .append(id)
+            .toHashCode();
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this)
+            .appendSuper(super.toString())
+            .append("id", id)
+            .append("title", title)
+            .toString();
   }
 }

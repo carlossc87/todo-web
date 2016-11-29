@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.carlossc87.todo;
+package io.github.carlossc87.todo.infra.db;
 
+import io.github.carlossc87.todo.AppConfig;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -38,8 +38,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {DatabaseConfig.class})
-@PropertySource("classpath:database.properties")
+@EnableJpaRepositories(basePackageClasses = {AppConfig.class})
 public class DatabaseConfig {
 
   /**
@@ -49,7 +48,7 @@ public class DatabaseConfig {
    * @return Devuelve el datasource
    */
   @Bean(name = "dataSource")
-  public final DataSource setupDataSource(
+  public DataSource setupDataSource(
           @Value("${database.jndi}") final String nameJndi) {
     final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
     dsLookup.setResourceRef(true);
@@ -65,10 +64,10 @@ public class DatabaseConfig {
    * @return Devuelve el adaptador
    */
   @Bean(name = "jpaVendorAdapter")
-  public final JpaVendorAdapter setupJpaVendorAdapter(
-          @Value("${hibernate.dialect}") final String dialect,
-          @Value("${hibernate.showsql}") final boolean showsql,
-          @Value("${hibernate.ddl}") final boolean ddl) {
+  public JpaVendorAdapter setupJpaVendorAdapter(
+          @Value("${database.hibernate.dialect}") final String dialect,
+          @Value("${database.hibernate.showsql}") final boolean showsql,
+          @Value("${database.hibernate.ddl}") final boolean ddl) {
     HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
     adapter.setDatabasePlatform(dialect);
     adapter.setShowSql(showsql);
@@ -85,7 +84,7 @@ public class DatabaseConfig {
    * @return Devuelve la factoria
    */
   @Bean(name = "entityManagerFactory")
-  public final EntityManagerFactory setupEntityManagerFactoryBean(
+  public EntityManagerFactory setupEntityManagerFactoryBean(
           @Value("${app.name}") final String name,
           final DataSource dataSource,
           final JpaVendorAdapter adapter) {
@@ -94,7 +93,7 @@ public class DatabaseConfig {
     bean.setPersistenceUnitName(name);
     bean.setDataSource(dataSource);
     bean.setJpaVendorAdapter(adapter);
-    bean.setPackagesToScan(getClass().getPackage().getName());
+    bean.setPackagesToScan(AppConfig.class.getPackage().getName());
     bean.afterPropertiesSet();
     return bean.getObject();
   }
@@ -106,7 +105,7 @@ public class DatabaseConfig {
    * @return Devuelve el manejador
    */
   @Bean(name = "transactionManager")
-  public final PlatformTransactionManager setupTransactionManager(
+  public PlatformTransactionManager setupTransactionManager(
           final EntityManagerFactory entityManagerFactory) {
     JpaTransactionManager manager = new JpaTransactionManager();
     manager.setEntityManagerFactory(entityManagerFactory);

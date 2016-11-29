@@ -20,8 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -39,12 +37,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class ExceptionsController {
 
   /**
-   * Logger de la clase.
-   */
-  private static final Logger LOG
-          = LoggerFactory.getLogger(ExceptionsController.class);
-
-  /**
    * Captura las excepciones cuando no se encuentra una página.
    *
    * @param request Petición que produce que se lance la excepción
@@ -53,13 +45,8 @@ public class ExceptionsController {
   @ExceptionHandler(value = {NoHandlerFoundException.class,
     MissingServletRequestParameterException.class})
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
-  public final ModelAndView handleNotFoundException(
+  public ModelAndView handleNotFound(
           final HttpServletRequest request) {
-    LOG.debug("Error por no encontrar una página o recurso.");
-
-    // Escribimos una alerta en el log
-    LOG.warn("Page not found: " + request.getRequestURI());
-
     // Mostramos una página con el error
     final Map<String, Object> model = new HashMap<>();
     model.put("uri", request.getRequestURI());
@@ -75,27 +62,12 @@ public class ExceptionsController {
    */
   @ExceptionHandler(Exception.class)
   @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-  public final ModelAndView handleError(final HttpServletRequest request,
+  public ModelAndView handleError(final HttpServletRequest request,
           final Exception exception) {
-    LOG.debug("Error no esperado.");
-
-    final StringBuilder sbError = new StringBuilder();
-
-    // Generamos el identificador del error
-    final UUID idError = UUID.randomUUID();
-
-    // Contruimos el mensaje de error
-    sbError.append("ERROR ID: ");
-    sbError.append(idError.toString());
-    sbError.append(", REQUEST URI: ");
-    sbError.append(request.getRequestURI());
-
-    // Escribimos el error en el log
-    LOG.error(sbError.toString(), exception);
-
     // Mostramos una página con el error
     final Map<String, Object> model = new HashMap<>();
-    model.put("error", idError.toString());
+    model.put("error", UUID.randomUUID().toString());
+    model.put("uri", request.getRequestURI());
     return new ModelAndView("exceptions/error", model);
   }
 }

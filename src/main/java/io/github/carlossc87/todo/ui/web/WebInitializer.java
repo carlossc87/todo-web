@@ -14,8 +14,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.carlossc87.todo;
+package io.github.carlossc87.todo.ui.web;
 
+import io.github.carlossc87.todo.AppConfig;
 import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -35,7 +36,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class WebInitializer implements WebApplicationInitializer {
 
   @Override
-  public final void onStartup(final ServletContext servletContext)
+  public void onStartup(final ServletContext servletContext)
           throws ServletException {
     final WebApplicationContext springContext
             = setupSpringContext(servletContext);
@@ -54,7 +55,7 @@ public class WebInitializer implements WebApplicationInitializer {
           final ServletContext servletContext) {
     final AnnotationConfigWebApplicationContext springContext
             = new AnnotationConfigWebApplicationContext();
-    springContext.register(AppConfig.class);
+    springContext.register(new Class<?>[]{AppConfig.class, WebConfig.class});
     springContext.setServletContext(servletContext);
     return springContext;
   }

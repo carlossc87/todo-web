@@ -47,7 +47,7 @@ public class TaskValidator implements Validator {
    * @return Devuelve true si la clase es una tarea o false de lo contrario
    */
   @Override
-  public final boolean supports(final Class<?> type) {
+  public boolean supports(final Class<?> type) {
     return TaskModel.class.equals(type);
   }
 
@@ -58,19 +58,16 @@ public class TaskValidator implements Validator {
    * @param errors La lista de errores que se detecten
    */
   @Override
-  public final void validate(final Object o, final Errors errors) {
-    LOG.debug("Validar una tarea.");
+  public void validate(final Object o, final Errors errors) {
     final TaskModel todo = (TaskModel) o;
     final boolean hasTitle = !(todo.getTitle() == null
             || todo.getTitle().trim().isEmpty());
 
-    LOG.debug("Comprobando si se pasa un título.");
     if (!hasTitle) {
       errors.rejectValue("title", "validators.task.title.requerido");
     }
 
     final boolean maxSizeTitle = todo.getTitle().length() < MAX_SIZE_TITLE;
-    LOG.debug("Comprobando si el título es mayor de del limite.");
     if (hasTitle && maxSizeTitle) {
       errors.rejectValue("title", "validators.task.title.min10");
     }

@@ -14,23 +14,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.carlossc87.todo;
-
-import io.github.carlossc87.todo.infra.db.DatabaseConfig;
-import io.github.carlossc87.todo.infra.aspects.AspectConfig;
-import io.github.carlossc87.todo.infra.properties.PropertyConfig;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-
 /**
- * Configuración de la aplicación.
+ * Contiene la configuración de acceso a las propiedades.
  *
  * @author Carlos Serramito Calvo
  */
-@Configuration
-@ComponentScan
-@Import({DatabaseConfig.class, AspectConfig.class, PropertyConfig.class})
-public class AppConfig {
-
-}
+package io.github.carlossc87.todo.infra.properties;

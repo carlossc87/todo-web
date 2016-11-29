@@ -57,8 +57,7 @@ public class TasksService {
    *
    * @return La lista de las tareas
    */
-  public final List<TaskDto> list() {
-    LOG.debug("Busca todas las tareas.");
+  public List<TaskDto> list() {
     final List<Task> tasks = tasksRepository.findAll();
     return taskMapper.tasksToTaskDtos(tasks);
   }
@@ -69,8 +68,7 @@ public class TasksService {
    * @param id El id de la tarea
    * @return La tarea con el id o null si no existe
    */
-  public final TaskDto find(final Integer id) {
-    LOG.debug("Busca una tarea en concreto por el id.");
+  public TaskDto find(final Integer id) {
     final Task task = tasksRepository.findOne(id);
     return taskMapper.taskToTaskDto(task);
   }
@@ -80,9 +78,7 @@ public class TasksService {
    *
    * @param taskDto La tarea a guardar
    */
-  public final void save(final TaskDto taskDto) {
-    LOG.debug("Guarda una nueva tarea o una existente.");
-
+  public void save(final TaskDto taskDto) {
     // Eliminamos los espacios al comienzo y al final.
     taskDto.setTitle(taskDto.getTitle().trim());
 
@@ -98,8 +94,7 @@ public class TasksService {
    *
    * @param id El id de la tarea a eliminar.
    */
-  public final void delete(final Integer id) {
-    LOG.debug("Elimina una tarea.");
+  public void delete(final Integer id) {
     tasksRepository.delete(id);
   }
 }

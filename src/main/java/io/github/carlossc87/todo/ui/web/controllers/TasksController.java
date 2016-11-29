@@ -24,8 +24,6 @@ import io.github.carlossc87.todo.ui.web.validators.TaskValidator;
 import java.util.List;
 import java.util.Locale;
 import javax.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,12 +40,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = {"/", "tasks"})
 public class TasksController {
-
-  /**
-   * Logger de la clase.
-   */
-  private static final Logger LOG
-          = LoggerFactory.getLogger(TasksController.class);
 
   /**
    * Prefijo para rederigir a unha vista.
@@ -87,7 +79,7 @@ public class TasksController {
    * @param binder El binder
    */
   @InitBinder
-  protected final void initBinder(final WebDataBinder binder) {
+  protected void initBinder(final WebDataBinder binder) {
     binder.addValidators(new TaskValidator());
   }
 
@@ -99,8 +91,7 @@ public class TasksController {
    * @return Devuelve la vista de las listas
    */
   @RequestMapping(value = {"", "index"})
-  public final String index(final Model model, final Locale locale) {
-    LOG.error("Mostrar todas las tareas.");
+  public String index(final Model model, final Locale locale) {
     final List<TaskDto> taskDtos = tasksService.list();
     final List<TaskModel> taskModels
             = taskModelMapper.taskDtosToTaskModels(taskDtos);
@@ -115,8 +106,7 @@ public class TasksController {
    * @return Devuelve la vista del formularios
    */
   @RequestMapping("add")
-  public final String add(final Model model) {
-    LOG.debug("Mostrar el formulario para añadir una tarea.");
+  public String add(final Model model) {
     model.addAttribute("task", new TaskModel());
     return TASKS_ADD;
   }
@@ -129,9 +119,8 @@ public class TasksController {
    * @return Se redirige a la lista de tareas
    */
   @RequestMapping("saveadd")
-  public final String saveadd(@Valid final TaskModel taskModel,
+  public String saveadd(@Valid final TaskModel taskModel,
           final BindingResult result) {
-    LOG.debug("Guardar los cambios de una tarea nueva o existente.");
     if (result.hasErrors()) {
       return TASKS_ADD;
     }
@@ -149,8 +138,7 @@ public class TasksController {
    * @return Se muestra el formulario
    */
   @RequestMapping("edit")
-  public final String edit(final Integer id, final Model model) {
-    LOG.debug("Mostrar el formulario para editar una tarea.");
+  public String edit(final Integer id, final Model model) {
     final TaskDto taskDto = tasksService.find(id);
     final TaskModel taskModel = taskModelMapper.taskDtoToTaskModel(taskDto);
     model.addAttribute("task", taskModel);
@@ -165,9 +153,8 @@ public class TasksController {
    * @return Se redirige a la lista de tareas
    */
   @RequestMapping("saveedit")
-  public final String saveedit(@Valid final TaskModel taskModel,
+  public String saveedit(@Valid final TaskModel taskModel,
           final BindingResult result) {
-    LOG.debug("Guardar los cambios de una tarea nueva o existente.");
     if (result.hasErrors()) {
       return TASKS_EDIT;
     }
@@ -184,8 +171,7 @@ public class TasksController {
    * @return Se redirige a la lista de tareas
    */
   @RequestMapping("delete")
-  public final String delete(final Integer id) {
-    LOG.debug("Eliminar una tarea.");
+  public String delete(final Integer id) {
     tasksService.delete(id);
     return REDIRECT + TASKS_INDEX;
   }

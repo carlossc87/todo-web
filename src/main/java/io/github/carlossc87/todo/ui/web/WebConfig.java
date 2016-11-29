@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.carlossc87.todo;
+package io.github.carlossc87.todo.ui.web;
 
 import java.util.Locale;
 import org.springframework.context.annotation.Bean;
@@ -44,12 +44,12 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
   @Override
-  public final void addInterceptors(final InterceptorRegistry registry) {
+  public void addInterceptors(final InterceptorRegistry registry) {
     registry.addInterceptor(setupLocaleChangeInterceptor());
   }
 
   @Override
-  public final void addResourceHandlers(
+  public void addResourceHandlers(
           final ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/assets/**")
             .addResourceLocations("/assets/");
@@ -63,7 +63,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve el interceptor para el idioma
    */
   @Bean(name = "localeInterceptor")
-  public final LocaleChangeInterceptor setupLocaleChangeInterceptor() {
+  public LocaleChangeInterceptor setupLocaleChangeInterceptor() {
     final LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
     interceptor.setParamName("lang");
     return interceptor;
@@ -75,7 +75,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve el resolvedor de los locale
    */
   @Bean(name = "localeResolver")
-  public final SessionLocaleResolver setupSessionLocaleResolver() {
+  public SessionLocaleResolver setupSessionLocaleResolver() {
     final SessionLocaleResolver resolver = new SessionLocaleResolver();
     final Locale locale = new Locale("es", "ES");
     resolver.setDefaultLocale(locale);
@@ -88,7 +88,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve la fuente de los mensajes
    */
   @Bean(name = "messageSource")
-  public final AbstractMessageSource
+  public AbstractMessageSource
           setupReloadableResourceBundleMessageSource() {
     final ResourceBundleMessageSource messageSource
             = new ResourceBundleMessageSource();
@@ -102,7 +102,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    * @return Devuelve el resolvedor
    */
   @Bean(name = "viewResolver")
-  public final ViewResolver setupViewResolver() {
+  public ViewResolver setupViewResolver() {
     final UrlBasedViewResolver resolver = new InternalResourceViewResolver();
     resolver.setViewClass(JstlView.class);
     resolver.setPrefix("/WEB-INF/jsp/");

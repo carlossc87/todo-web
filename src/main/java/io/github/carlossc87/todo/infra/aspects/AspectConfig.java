@@ -14,23 +14,18 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.carlossc87.todo;
+package io.github.carlossc87.todo.infra.aspects;
 
-import io.github.carlossc87.todo.infra.db.DatabaseConfig;
-import io.github.carlossc87.todo.infra.aspects.AspectConfig;
-import io.github.carlossc87.todo.infra.properties.PropertyConfig;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
- * Configuración de la aplicación.
- *
+ * Configuración de los aspectos.
+ * 
  * @author Carlos Serramito Calvo
  */
 @Configuration
-@ComponentScan
-@Import({DatabaseConfig.class, AspectConfig.class, PropertyConfig.class})
-public class AppConfig {
-
+@EnableAspectJAutoProxy
+public class AspectConfig {
+  
 }
