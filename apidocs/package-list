@@ -4,6 +4,7 @@ io.github.carlossc87.todo.app.repositories
 io.github.carlossc87.todo.app.services
 io.github.carlossc87.todo.app.services.dtos
 io.github.carlossc87.todo.app.services.mappers
+io.github.carlossc87.todo.infra.aspects
 io.github.carlossc87.todo.ui.web.controllers
 io.github.carlossc87.todo.ui.web.mappers
 io.github.carlossc87.todo.ui.web.models
