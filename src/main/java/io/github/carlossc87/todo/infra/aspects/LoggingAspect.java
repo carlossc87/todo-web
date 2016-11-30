@@ -38,7 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Aspect
 public class LoggingAspect {
 
-  private static final Map<Class, Logger> LOGGER = new HashMap<>();
+  private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 
   @Pointcut("execution(public * *(..))")
   protected final void anyPublicMethod() {
@@ -71,14 +71,19 @@ public class LoggingAspect {
   }
 
   @Before("(anyService() || anyController() ) && anyPublicMethod()")
-  public void loggingCallToInfo(JoinPoint point) {
+  public void loggingCallToInfo(JoinPoint joinPoint) {
     final StringBuilder paramsSringBuilder = new StringBuilder();
     final StringBuilder logSringBuilder = new StringBuilder();
-
-    final String method = MethodSignature.class.cast(point.getSignature())
+    
+    final String method = MethodSignature.class.cast(joinPoint.getSignature())
             .getMethod().getName();
-
-    for (Object param : point.getArgs()) {
+    
+    String clazz = joinPoint.getTarget().toString();
+    if( clazz.contains("@") ){
+      clazz = clazz.substring(0, clazz.indexOf("@"));
+    }
+    
+    for (Object param : joinPoint.getArgs()) {
       paramsSringBuilder.append(param).append(" ");
     }
     final String params = paramsSringBuilder.toString();
@@ -87,41 +92,24 @@ public class LoggingAspect {
     if (!params.isEmpty()) {
       logSringBuilder.append(" with params ").append(params);
     }
-
-    getLogger(point.getTarget().getClass()).info(logSringBuilder.toString());
+    logSringBuilder.append(" in class ").append(clazz);
+    
+    LOGGER.info(logSringBuilder.toString());
   }
   
   @AfterReturning(pointcut = "notFound()", returning="mav")
-  public void loggingNotFound(JoinPoint point, ModelAndView mav){
-    getLogger(point.getTarget().getClass())
-            .warn("Page not found. Uri: " + mav.getModel().get("uri"));
+  public void loggingNotFound(ModelAndView mav){
+    LOGGER.warn("Page not found. Uri: " + mav.getModel().get("uri"));
   }
   
   @AfterReturning(pointcut = "error()", returning="mav")
-  public void loggingError(JoinPoint point, ModelAndView mav){
+  public void loggingError(ModelAndView mav){
     final StringBuilder errorStringBuilder = new StringBuilder();
     errorStringBuilder.append("Application error. Id: ");
     errorStringBuilder.append(mav.getModel().get("error"));
     errorStringBuilder.append(", uri: ");
     errorStringBuilder.append(mav.getModel().get("uri"));
     
-    getLogger(point.getTarget().getClass())
-            .error(errorStringBuilder.toString());
+    LOGGER.error(errorStringBuilder.toString());
   }
-  
-  private static Logger getLogger(Class clazz) {
-    Logger logger = LOGGER.get(clazz);
-
-    if (logger == null) {
-      synchronized (clazz) {
-        if (logger == null) {
-          logger = LoggerFactory.getLogger(clazz);
-          LOGGER.put(clazz, logger);
-        }
-      }
-    }
-
-    return logger;
-  }
-
 }
